@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ .Values.name }}
-  namespace: kube-system
+  namespace: {{ .Values.namespace }}
 data:
   Corefile: |
     .:53 {

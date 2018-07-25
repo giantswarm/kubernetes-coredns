@@ -31,4 +31,4 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: {{ .Values.name }}
-  namespace: kube-system
+  namespace: {{ .Values.namespace }}
