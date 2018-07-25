@@ -3,7 +3,7 @@ kind: ClusterRole
 metadata:
   labels:
     kubernetes.io/bootstrapping: rbac-defaults
-  name: system:coredns
+  name: system:{{ .Values.name }}
 rules:
 - apiGroups:
   - ""
@@ -23,12 +23,12 @@ metadata:
     rbac.authorization.kubernetes.io/autoupdate: "true"
   labels:
     kubernetes.io/bootstrapping: rbac-defaults
-  name: system:coredns
+  name: system:{{ .Values.name }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: system:coredns
+  name: system:{{ .Values.name }}
 subjects:
 - kind: ServiceAccount
-  name: coredns
+  name: {{ .Values.name }}
   namespace: kube-system

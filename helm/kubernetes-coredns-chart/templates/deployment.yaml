@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: coredns
+  name: {{ .Values.name }}
   namespace: kube-system
   labels:
-    k8s-app: coredns
+    k8s-app: {{ .Values.name }}
     kubernetes.io/name: "CoreDNS"
 spec:
   replicas: 2
@@ -14,13 +14,13 @@ spec:
       maxUnavailable: 1
   selector:
     matchLabels:
-      k8s-app: coredns
+      k8s-app: {{ .Values.name }}
   template:
     metadata:
       labels:
-        k8s-app: coredns
+        k8s-app: {{ .Values.name }}
     spec:
-      serviceAccountName: coredns
+      serviceAccountName: {{ .Values.name }}
       priorityClassName: important-pods
       tolerations:
         - key: node-role.kubernetes.io/master
@@ -35,7 +35,7 @@ spec:
                   - key: k8s-app
                     operator: In
                     values:
-                    - coredns
+                    - {{ .Values.name }}
               topologyKey: kubernetes.io/hostname
       containers:
       - name: coredns
@@ -65,7 +65,7 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: coredns
+            name: {{ .Values.name }}
             items:
             - key: Corefile
               path: Corefile
