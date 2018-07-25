@@ -39,7 +39,7 @@ spec:
               topologyKey: kubernetes.io/hostname
       containers:
       - name: coredns
-        image: {{ .RegistryDomain }}/giantswarm/coredns:1.1.1
+        image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: IfNotPresent
         args: [ "-conf", "/etc/coredns/Corefile" ]
         volumeMounts:
