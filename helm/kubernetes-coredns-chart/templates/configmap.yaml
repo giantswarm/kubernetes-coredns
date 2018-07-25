@@ -8,7 +8,7 @@ data:
     .:53 {
         errors
         health
-        kubernetes {{.Cluster.Kubernetes.Domain}} {{.Cluster.Kubernetes.API.ClusterIPRange}} {{.Cluster.Calico.Subnet}}/{{.Cluster.Calico.CIDR}} {
+        kubernetes {{ .Values.cluster.kubernetes.domain }} {{ .Values.cluster.kubernetes.API.clusterIPRange }} {{ .Values.cluster.calico.subnet }}/{{ .Values.cluster.calico.CIDR }} {
           pods insecure
           upstream
           fallthrough in-addr.arpa ip6.arpa
