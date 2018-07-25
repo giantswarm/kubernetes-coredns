@@ -7,11 +7,9 @@ metadata:
     k8s-app: {{ .Values.name }}
     kubernetes.io/name: "CoreDNS"
 spec:
-  replicas: 2
+  replicas: {{ .Values.replicas }}
   strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 1
+{{ toYaml .Values.updateStrategy | indent 4 }}
   selector:
     matchLabels:
       k8s-app: {{ .Values.name }}
@@ -46,11 +44,11 @@ spec:
         - name: config-volume
           mountPath: /etc/coredns
         ports:
-        - containerPort: 53
-          name: dns
+        - containerPort: {{ .Values.ports.udp.port }}
+          name: {{ .Values.ports.udp.name }}
           protocol: UDP
-        - containerPort: 53
-          name: dns-tcp
+        - containerPort: {{ .Values.ports.tcp.port }}
+          name: {{ .Values.ports.tcp.name }}
           protocol: TCP
         livenessProbe:
           httpGet:
