@@ -1,7 +1,7 @@
 # kubernetes-coredns
-Helm Chart for CoreDNS in Guest Clusters
+Helm Chart for CoreDNS in Guest Clusters.
 
-* Installs the the DNS server [CoreDNS](https://github.com/coredns/coredns)
+* Installs the the DNS server [CoreDNS](https://github.com/coredns/coredns).
 
 ## Installing the Chart
 
@@ -19,7 +19,7 @@ Provide a custom `values.yaml`:
 $ helm install kubernetes-coredns -f values.yaml
 ```
 
-Deployment to Guest Clusters will be handled by [chart-operator](https://github.com/giantswarm/chart-operator)
+Deployment to Guest Clusters will be handled by [chart-operator](https://github.com/giantswarm/chart-operator).
 
 ## Configuration
 
