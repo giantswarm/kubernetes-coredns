@@ -9,7 +9,7 @@ metadata:
     kubernetes.io/name: "CoreDNS"
 data:
   Corefile: |
-    .:53 {
+    .:{{ .Values.ports.dns.port }} {
         errors
         health
         kubernetes {{ .Values.cluster.kubernetes.domain }} {{ .Values.cluster.kubernetes.API.clusterIPRange }} {{ .Values.cluster.calico.subnet }}/{{ .Values.cluster.calico.CIDR }} {
@@ -17,7 +17,7 @@ data:
           upstream
           fallthrough in-addr.arpa ip6.arpa
         }
-        prometheus :9153
+        prometheus :{{ .Values.ports.prometheus }}
         proxy . /etc/resolv.conf
         cache 30
     }

@@ -35,10 +35,8 @@ Deployment to Guest Clusters will be handled by [chart-operator](https://github.
 | `image.repository`                      | The image repository to pull from       | `giantswarm/kube-state-metrics` |
 | `image.tag`                             | The image tag to pull from              | `1.1.1`                         |
 | `replicas`                              | The number of replicas of the container | `2`                             |
-| `ports.udp.name`                        | The udp port name                       | `dns`                           |
-| `ports.udp.port`                        | The udp port                            | `53`                            |
-| `ports.tcp.name`                        | The tcp port name                       | `dns-tcp`                       |
-| `ports.tcp.port`                        | The tcp port                            | `53`                            |
+| `ports.dns.name`                        | The dns port name                       | `dns`                           |
+| `ports.dns.port`                        | The dns port                            | `53`                            |
 | `test.registry`                         | The test image registry to pull from    | `quay.io`                       |
 | `test.image.repository`                 | The test image repository to pull from  | `giantswarm/alpine-testing`     |
 | `test.image.tag`                        | The test image tag to pull from         | `0.1.0`                         |

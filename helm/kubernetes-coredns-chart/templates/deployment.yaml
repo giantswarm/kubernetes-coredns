@@ -45,11 +45,11 @@ spec:
         - name: config-volume
           mountPath: /etc/coredns
         ports:
-        - containerPort: {{ .Values.ports.udp.port }}
-          name: {{ .Values.ports.udp.name }}
+        - containerPort: {{ .Values.ports.dns.port }}
+          name: {{ .Values.ports.dns.name }}
           protocol: UDP
-        - containerPort: {{ .Values.ports.tcp.port }}
-          name: {{ .Values.ports.tcp.name }}
+        - containerPort: {{ .Values.ports.dns.port }}
+          name: {{ .Values.ports.dns.name }}-tcp
           protocol: TCP
         livenessProbe:
           httpGet:

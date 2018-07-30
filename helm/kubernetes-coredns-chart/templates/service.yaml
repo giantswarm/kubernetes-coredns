@@ -13,9 +13,9 @@ spec:
     k8s-app: {{ .Values.name }}
   clusterIP: {{ .Values.cluster.kubernetes.DNS.IP }}
   ports:
-  - name: {{ .Values.ports.udp.name }}
-    port: {{ .Values.ports.udp.port }}
+  - name: {{ .Values.ports.dns.name }}
+    port: {{ .Values.ports.dns.port }}
     protocol: UDP
-  - name: {{ .Values.ports.tcp.name }}
-    port: {{ .Values.ports.tcp.port }}
+  - name: {{ .Values.ports.dns.name }}-tcp
+    port: {{ .Values.ports.dns.port }}
     protocol: TCP
