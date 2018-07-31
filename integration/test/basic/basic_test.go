@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"os"
 	"testing"
+
+	"github.com/giantswarm/kubernetes-coredns/integration/templates"
 )
 
 const (
@@ -16,7 +18,7 @@ const (
 func TestHelm(t *testing.T) {
 	channel := fmt.Sprintf("%s-%s", os.Getenv("CIRCLE_SHA1"), testName)
 
-	err := r.InstallResource(releaseName, "", channel)
+	err := r.InstallResource(releaseName, templates.CoreDNSValues, channel)
 	if err != nil {
 		t.Fatalf("could not install %q %v", releaseName, err)
 	}
