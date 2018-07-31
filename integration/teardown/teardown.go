@@ -7,6 +7,6 @@ import (
 	"github.com/giantswarm/helmclient"
 )
 
-func Teardown(f *framework.Host, helmClient *helmclient.Client) error {
+func Teardown(h *framework.Host, helmClient *helmclient.Client) error {
 	return nil
 }
