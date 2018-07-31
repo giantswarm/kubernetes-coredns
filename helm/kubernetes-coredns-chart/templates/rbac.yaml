@@ -3,7 +3,7 @@ kind: ClusterRole
 metadata:
   name: system:{{ .Values.name }}
   labels:
-    giantswarm.io/service-type: "managed"
+    giantswarm.io/service-type: "{{ .Values.serviceType }}"
     k8s-app: {{ .Values.name }}
     kubernetes.io/bootstrapping: rbac-defaults
     kubernetes.io/cluster-service: "true"
@@ -27,7 +27,7 @@ metadata:
   annotations:
     rbac.authorization.kubernetes.io/autoupdate: "true"
   labels:
-    giantswarm.io/service-type: "managed"
+    giantswarm.io/service-type: "{{ .Values.serviceType }}"
     k8s-app: {{ .Values.name }}
     kubernetes.io/bootstrapping: rbac-defaults
     kubernetes.io/cluster-service: "true"

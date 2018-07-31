@@ -4,6 +4,7 @@
 
 name: coredns
 namespace: kube-system
+serviceType: managed
 
 replicas: 2
 
