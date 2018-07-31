@@ -38,13 +38,13 @@
   version = "v1.1.0"
 
 [[projects]]
+  branch = "master"
   name = "github.com/docker/distribution"
   packages = [
-    "digest",
+    "digestset",
     "reference"
   ]
-  revision = "48294d928ced5dd9b378f7fd7c6f5da3ff3f2c89"
-  version = "v2.6.2"
+  revision = "0dae0957e5fe3156c265d22bef4cba9efbf388e2"
 
 [[projects]]
   name = "github.com/docker/docker"
@@ -336,6 +336,12 @@
   version = "1.0.1"
 
 [[projects]]
+  name = "github.com/opencontainers/go-digest"
+  packages = ["."]
+  revision = "279bed98673dd5bef374d3b6e4b09e2af76183bf"
+  version = "v1.0.0-rc1"
+
+[[projects]]
   name = "github.com/pborman/uuid"
   packages = ["."]
   revision = "e790cca94e6cc75c7064b1332e63811d4aae1a53"
@@ -607,7 +613,6 @@
     "pkg/api/meta",
     "pkg/api/resource",
     "pkg/api/validation",
-    "pkg/api/validation/path",
     "pkg/apimachinery",
     "pkg/apimachinery/announced",
     "pkg/apimachinery/registered",
@@ -661,7 +666,6 @@
   version = "kubernetes-1.10.4"
 
 [[projects]]
-  branch = "master"
   name = "k8s.io/apiserver"
   packages = [
     "pkg/apis/audit",
@@ -672,7 +676,8 @@
     "pkg/features",
     "pkg/util/feature"
   ]
-  revision = "25e79651c7e569b0ebcd97affc0fe7f1ffcbee94"
+  revision = "8378ef881d4fa7d3ca5c5e7e5309592ec69b11e4"
+  version = "kubernetes-1.10.4"
 
 [[projects]]
   name = "k8s.io/client-go"
@@ -1011,6 +1016,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "30bac4185815588fe520193e53be4514f2bc59a30eb0e0e1712273302b822cf3"
+  inputs-digest = "3ab7294d0903e1782a4e134bd0e8ea8b7f4bd1cad5e550e22fac2b4f9e4c4d85"
   solver-name = "gps-cdcl"
   solver-version = 1
