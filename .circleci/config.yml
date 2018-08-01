@@ -15,7 +15,7 @@ e2eTest: &e2eTest
 
     - run: ./e2e-harness localkube
 
-    - run: ./minikube-linux-amd64 addons disable kube-dns
+    - run: sudo ./minikube-linux-amd64 addons disable kube-dns
 
     - run: ./e2e-harness setup --remote=false
 
