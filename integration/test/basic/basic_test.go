@@ -4,9 +4,9 @@ package basic
 
 import (
 	"fmt"
-	"os"
 	"testing"
 
+	"github.com/giantswarm/kubernetes-coredns/integration/env"
 	"github.com/giantswarm/kubernetes-coredns/integration/templates"
 )
 
@@ -16,7 +16,7 @@ const (
 )
 
 func TestHelm(t *testing.T) {
-	channel := fmt.Sprintf("%s-%s", os.Getenv("CIRCLE_SHA1"), testName)
+	channel := fmt.Sprintf("%s-%s", env.CircleSHA(), testName)
 
 	err := r.InstallResource(releaseName, templates.CoreDNSValues, channel)
 	if err != nil {
