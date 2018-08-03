@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/giantswarm/e2e-harness/pkg/framework"
+	"github.com/giantswarm/e2e-harness/pkg/framework/deployment"
 	"github.com/giantswarm/e2e-harness/pkg/framework/resource"
 	"github.com/giantswarm/helmclient"
 	"github.com/giantswarm/micrologger"
@@ -39,6 +40,17 @@ func init() {
 			VaultToken: "na",
 		}
 		h, err = framework.NewHost(c)
+		if err != nil {
+			panic(err.Error())
+		}
+	}
+
+	{
+		c := deployment.Deployment{
+			K8sClient: h.K8sClient(),
+			Logger:    l,
+		}
+		d, err = deployment.New(c)
 		if err != nil {
 			panic(err.Error())
 		}
