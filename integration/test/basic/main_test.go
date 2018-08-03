@@ -47,7 +47,7 @@ func init() {
 	}
 
 	{
-		c := deployment.Deployment{
+		c := deployment.Config{
 			K8sClient: h.K8sClient(),
 			Logger:    l,
 		}
