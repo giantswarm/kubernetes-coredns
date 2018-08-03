@@ -28,11 +28,15 @@ const (
 )
 
 func TestHelm(t *testing.T) {
-	// We disable the minikube kube-dns addon in the circle config,
-	// verify that it is properly removed.
+	// We disable the minikube kube-dns addon in the circleci config,
+	// verify that it got properly removed.
 	err := d.Check(kubeDNSName, 0, map[string]string{}, map[string]string{})
-	if !deployment.IsNotFound(err) {
+	if deployment.IsNotFound(err) {
+		// kube-dns properly removed: Fallthrough
+	} else if err == nil {
 		t.Fatalf("kube-dns is still installed")
+	} else if err != nil {
+		t.Fatal(err)
 	}
 
 	// Install and check proper installation of CoreDNS.
