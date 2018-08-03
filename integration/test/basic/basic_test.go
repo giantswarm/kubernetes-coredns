@@ -14,17 +14,28 @@ import (
 const (
 	testName = "basic"
 
-	coreDNSName = "coredns"
+	coreDNSName   = "coredns"
+	coreDNSLabels = map[string]string{
+		"k8s-app":                    coreDNSName,
+		"giantswarm.io/service-type": "managed",
+		"kubernetes.io/name":         "CoreDNS",
+	}
+	controllerMatchLabels = map[string]string{
+		"k8s-app": coreDNSName,
+	}
 	kubeDNSName = "kube-dns"
 	releaseName = "kubernetes-coredns"
 )
 
 func TestHelm(t *testing.T) {
-	err := d.Check(kubeDNSName, 2, map[string]string{}, map[string]string{})
+	// We disable the minikube kube-dns addon in the circle config,
+	// verify that it is properly removed.
+	err := d.Check(kubeDNSName, 0, map[string]string{}, map[string]string{})
 	if !deployment.IsNotFound(err) {
 		t.Fatalf("kube-dns is still installed")
 	}
 
+	// Install and check proper installation of CoreDNS.
 	channel := fmt.Sprintf("%s-%s", env.CircleSHA(), testName)
 	err = r.InstallResource(releaseName, templates.CoreDNSValues, channel)
 	if err != nil {
@@ -37,14 +48,6 @@ func TestHelm(t *testing.T) {
 	}
 	l.Log("level", "debug", "message", fmt.Sprintf("%s succesfully deployed", releaseName))
 
-	coreDNSLabels := map[string]string{
-		"k8s-app":                    coreDNSName,
-		"giantswarm.io/service-type": "managed",
-		"kubernetes.io/name":         "CoreDNS",
-	}
-	controllerMatchLabels := map[string]string{
-		"k8s-app": coreDNSName,
-	}
 	err = d.Check(coreDNSName, 2, coreDNSLabels, controllerMatchLabels)
 	if err != nil {
 		t.Fatalf("%s manifest is incorrect: %v", coreDNSName, err)
