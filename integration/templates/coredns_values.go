@@ -8,5 +8,5 @@ const CoreDNSValues = `namespace: kube-system
 cluster:
   kubernetes:
     DNS:
-      IP: 10.96.0.11
+      IP: 10.96.0.10
 `
