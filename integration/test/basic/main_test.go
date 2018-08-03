@@ -16,6 +16,7 @@ import (
 )
 
 var (
+	d          *deployment.Deployment
 	h          *framework.Host
 	helmClient *helmclient.Client
 	l          micrologger.Logger
