@@ -44,12 +44,12 @@ func TestHelm(t *testing.T) {
 	}
 	l.Log("level", "debug", "message", fmt.Sprintf("%s succesfully deployed", releaseName))
 
-	coreDNSLabels = map[string]string{
+	coreDNSLabels := map[string]string{
 		"k8s-app":                    coreDNSName,
 		"giantswarm.io/service-type": "managed",
 		"kubernetes.io/name":         "CoreDNS",
 	}
-	controllerMatchLabels = map[string]string{
+	controllerMatchLabels := map[string]string{
 		"k8s-app": coreDNSName,
 	}
 	err = d.Check(coreDNSName, 2, coreDNSLabels, controllerMatchLabels)
