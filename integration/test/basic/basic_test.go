@@ -14,15 +14,7 @@ import (
 const (
 	testName = "basic"
 
-	coreDNSName   = "coredns"
-	coreDNSLabels = map[string]string{
-		"k8s-app":                    coreDNSName,
-		"giantswarm.io/service-type": "managed",
-		"kubernetes.io/name":         "CoreDNS",
-	}
-	controllerMatchLabels = map[string]string{
-		"k8s-app": coreDNSName,
-	}
+	coreDNSName = "coredns"
 	kubeDNSName = "kube-dns"
 	releaseName = "kubernetes-coredns"
 )
@@ -52,6 +44,14 @@ func TestHelm(t *testing.T) {
 	}
 	l.Log("level", "debug", "message", fmt.Sprintf("%s succesfully deployed", releaseName))
 
+	coreDNSLabels = map[string]string{
+		"k8s-app":                    coreDNSName,
+		"giantswarm.io/service-type": "managed",
+		"kubernetes.io/name":         "CoreDNS",
+	}
+	controllerMatchLabels = map[string]string{
+		"k8s-app": coreDNSName,
+	}
 	err = d.Check(coreDNSName, 2, coreDNSLabels, controllerMatchLabels)
 	if err != nil {
 		t.Fatalf("%s manifest is incorrect: %v", coreDNSName, err)
