@@ -115,7 +115,7 @@
     "pkg/clientset/versioned/typed/example/v1alpha1",
     "pkg/clientset/versioned/typed/provider/v1alpha1"
   ]
-  revision = "dbe7aa4771048f64040c9e6148a708c21226a1b2"
+  revision = "b404baf4b6f26764ad1356d8a639daec7c97138b"
 
 [[projects]]
   branch = "master"
@@ -128,16 +128,17 @@
   name = "github.com/giantswarm/e2e-harness"
   packages = [
     "pkg/framework",
+    "pkg/framework/deployment",
     "pkg/framework/resource",
     "pkg/harness"
   ]
-  revision = "fff26fea7e8d05a87c62cc477b197c0186d038f2"
+  revision = "1be392690131ad476b4b385c96ac00e65eabf5d0"
 
 [[projects]]
   branch = "master"
   name = "github.com/giantswarm/errors"
   packages = ["guest"]
-  revision = "2b68497b52129c0b5befe81abee57e766a81da7d"
+  revision = "51a7ca6b403dc133497da26a0a30684a5df56752"
 
 [[projects]]
   branch = "master"
@@ -155,7 +156,7 @@
   branch = "master"
   name = "github.com/giantswarm/microerror"
   packages = ["."]
-  revision = "a8d5d4f526c526b4b773062958847fe7e0b7f449"
+  revision = "a767567285d6db85cf9f08322fe49351aa385109"
 
 [[projects]]
   branch = "master"
@@ -164,7 +165,7 @@
     ".",
     "loggermeta"
   ]
-  revision = "39f8cfb7c2583edb28552d9e4b12193e5bddaf60"
+  revision = "d757f42e4a3efca1fe82e633579b28c586e08698"
 
 [[projects]]
   branch = "master"
@@ -248,7 +249,7 @@
   branch = "master"
   name = "github.com/google/go-github"
   packages = ["github"]
-  revision = "32c30013be0212dd7246d50d79172453d1fd2472"
+  revision = "7161710a6e17f60dd044570a59c5e11a3a5200d6"
 
 [[projects]]
   branch = "master"
@@ -367,7 +368,7 @@
     "internal/bitbucket.org/ww/goautoneg",
     "model"
   ]
-  revision = "7600349dcfe1abd18d72d3a1770870d9800a7801"
+  revision = "c7de2306084e37d54b8be01f3541a8464345e9a5"
 
 [[projects]]
   branch = "master"
@@ -409,7 +410,7 @@
     "ed25519/internal/edwards25519",
     "ssh/terminal"
   ]
-  revision = "c126467f60eb25f8f27e5a981f32a87e3965053f"
+  revision = "56440b844dfe139a8ac053f4ecac0b20b79058f4"
 
 [[projects]]
   branch = "master"
@@ -425,7 +426,7 @@
     "publicsuffix",
     "trace"
   ]
-  revision = "a0f8a16cb08c06df97cbdf9c47f4731ba548c33c"
+  revision = "f4c29de78a2a91c00474a2e689954305c350adf9"
 
 [[projects]]
   branch = "master"
@@ -449,7 +450,7 @@
     "unix",
     "windows"
   ]
-  revision = "bd9dbc187b6e1dacfdd2722a87e83093c2d7bd6e"
+  revision = "0ffbfd41fbef8ffcf9b62b0b0aa3a5873ed7a4fe"
 
 [[projects]]
   name = "golang.org/x/text"
@@ -502,7 +503,7 @@
   branch = "master"
   name = "google.golang.org/genproto"
   packages = ["googleapis/rpc/status"]
-  revision = "2a72893556e4d1f6c795a4c039314c9fa751eedb"
+  revision = "daca94659cb50e9f37c1b834680f2e46358f10b0"
 
 [[projects]]
   name = "google.golang.org/grpc"
@@ -521,7 +522,9 @@
     "internal",
     "internal/backoff",
     "internal/channelz",
+    "internal/envconfig",
     "internal/grpcrand",
+    "internal/transport",
     "keepalive",
     "metadata",
     "naming",
@@ -531,11 +534,10 @@
     "resolver/passthrough",
     "stats",
     "status",
-    "tap",
-    "transport"
+    "tap"
   ]
-  revision = "168a6198bcb0ef175f7dacec0b8691fc141dc9b8"
-  version = "v1.13.0"
+  revision = "32fb0ac620c32ba40a4626ddf94d90d12cce3455"
+  version = "v1.14.0"
 
 [[projects]]
   name = "gopkg.in/inf.v0"
@@ -840,7 +842,7 @@
   branch = "master"
   name = "k8s.io/kube-openapi"
   packages = ["pkg/util/proto"]
-  revision = "d8ea2fe547a448256204cfc68dfee7b26c720acb"
+  revision = "e3762e86a74c878ffed47484592986685639c2cd"
 
 [[projects]]
   name = "k8s.io/kubernetes"
@@ -1005,7 +1007,7 @@
   branch = "master"
   name = "k8s.io/utils"
   packages = ["exec"]
-  revision = "66066c83e385e385ccc3c964b44fd7dcd413d0ed"
+  revision = "045dc31ee5c40e8240241ce28dc24d7b56130373"
 
 [[projects]]
   branch = "master"
@@ -1016,6 +1018,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "3ab7294d0903e1782a4e134bd0e8ea8b7f4bd1cad5e550e22fac2b4f9e4c4d85"
+  inputs-digest = "abd1696567440925a27c0ebe07df5a4a615af48836f12c57ce6fd2023c84270d"
   solver-name = "gps-cdcl"
   solver-version = 1
