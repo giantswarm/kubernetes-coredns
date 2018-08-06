@@ -5,7 +5,7 @@ metadata:
 data:
   run.sh: |-
     @test "Testing hostname resolving" {
-      host {{ .Values.namespace }}.{{ .Values.name }} | grep {{ .Values.cluster.kubernetes.DNS.IP }}
+      host {{ .Values.name }}.{{ .Values.namespace }} | grep {{ .Values.cluster.kubernetes.DNS.IP }}
       host kubernetes | grep "has address"
     }
     @test "Testing IP resolving" {
