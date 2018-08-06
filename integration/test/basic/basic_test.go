@@ -49,10 +49,10 @@ func TestHelm(t *testing.T) {
 		"giantswarm.io/service-type": "managed",
 		"kubernetes.io/name":         "CoreDNS",
 	}
-	controllerMatchLabels := map[string]string{
+	coreDNSMatchLabels := map[string]string{
 		"k8s-app": coreDNSName,
 	}
-	err = d.Check(coreDNSName, 2, coreDNSLabels, controllerMatchLabels)
+	err = d.Check(coreDNSName, 2, coreDNSLabels, coreDNSMatchLabels)
 	if err != nil {
 		t.Fatalf("%s manifest is incorrect: %v", coreDNSName, err)
 	}
