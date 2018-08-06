@@ -12,5 +12,5 @@ data:
       host {{ .Values.cluster.kubernetes.DNS.IP }} | grep {{ .Values.name }}
 
       ip=$(host kubernetes | cut -d$' ' -f4)
-      host=host $ip | grep kubernetes
+      host $ip | grep kubernetes
     }
