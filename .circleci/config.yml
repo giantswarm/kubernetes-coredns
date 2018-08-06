@@ -15,6 +15,12 @@ e2eTest: &e2eTest
 
     - run: ./e2e-harness localkube
 
+    - run:
+        # Project specific: Only disable kube-dns in this project,
+        # since it cannot run side-by-side with core-dns.
+        name: Disable minikube kube-dns addon
+        command: sudo ./minikube-linux-amd64 addons disable kube-dns
+
     - run: ./e2e-harness setup --remote=false
 
     - run:
