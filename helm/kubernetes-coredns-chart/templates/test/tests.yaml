@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.name }}-tests
+data:
+  run.sh: |-
+    @test "Testing hostname resolving" {
+      host kubernetes | grep "has address"
+    }
+    @test "Testing ip resolving" {
+      ip=$(host kubernetes | cut -d$' ' -f4)
+      host=host ip | grep kubernetes
+    }
