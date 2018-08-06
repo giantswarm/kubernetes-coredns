@@ -25,10 +25,10 @@ func TestHelm(t *testing.T) {
 	err := d.Check(kubeDNSName, 0, nil, nil)
 	if deployment.IsNotFound(err) {
 		// kube-dns properly removed: Fallthrough
-	} else if err == nil {
-		t.Fatalf("kube-dns is still installed")
 	} else if err != nil {
 		t.Fatal(err)
+	} else {
+		t.Fatalf("kube-dns is still installed")
 	}
 
 	// Install and check proper installation of CoreDNS.
