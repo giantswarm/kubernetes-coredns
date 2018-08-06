@@ -4,11 +4,11 @@ metadata:
   name: {{ .Values.name }}-tests
 data:
   run.sh: |-
-    @test "Testing hostname resolving" {
+    @test "Testing DNS lookup" {
       host {{ .Values.name }}.{{ .Values.namespace }} | grep {{ .Values.cluster.kubernetes.DNS.IP }}
-      host kubernetes | grep "has address"
+      host kubernetes.default | grep "has address"
     }
-    @test "Testing IP resolving" {
+    @test "Testing reverse DNS lookup" {
       host {{ .Values.cluster.kubernetes.DNS.IP }} | grep {{ .Values.name }}
 
       ip=$(host kubernetes | cut -d$' ' -f4)
