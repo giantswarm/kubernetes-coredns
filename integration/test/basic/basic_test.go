@@ -22,7 +22,7 @@ const (
 func TestHelm(t *testing.T) {
 	// We disable the minikube kube-dns addon in the circleci config,
 	// verify that it got properly removed.
-	err := d.Check(kubeDNSName, 0, map[string]string{}, map[string]string{})
+	err := d.Check(kubeDNSName, 0, nil, nil)
 	if deployment.IsNotFound(err) {
 		// kube-dns properly removed: Fallthrough
 	} else if err == nil {
