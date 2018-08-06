@@ -10,7 +10,5 @@ data:
     }
     @test "Testing reverse DNS lookup" {
       host {{ .Values.cluster.kubernetes.DNS.IP }} | grep {{ .Values.name }}
-
-      ip=$(host kubernetes | cut -d$' ' -f4)
-      host $ip | grep kubernetes
+      host $(host kubernetes.default | cut -d$' ' -f4) | grep kubernetes
     }
