@@ -56,4 +56,10 @@ func TestHelm(t *testing.T) {
 	if err != nil {
 		t.Fatalf("%s manifest is incorrect: %v", coreDNSName, err)
 	}
+
+	// Helm Test
+	err = helmClient.RunReleaseTest(releaseName)
+	if err != nil {
+		t.Fatalf("unexpected error during test of the chart: %v", err)
+	}
 }
