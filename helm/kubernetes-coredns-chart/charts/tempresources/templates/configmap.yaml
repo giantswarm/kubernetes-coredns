@@ -35,22 +35,6 @@ data:
           keyFile: ''
   values.json: |
     {
-      "controller": {
-        "name": "{{ .Values.controller.name }}",
-        "replicas": "{{ .Values.global.controller.replicas }}",
-        "configmap": {
-          "name": "{{ .Values.controller.configmap.name }}"
-        },
-        "role": {
-          "name": "{{ .Values.controller.role.name }}"
-        },
-        "service": {
-          "enabled": {{ .Values.controller.service.enabled }}
-        }
-      },
-      "test": {
-        "enabled": false
-      }
     }
 
 {{- end }}

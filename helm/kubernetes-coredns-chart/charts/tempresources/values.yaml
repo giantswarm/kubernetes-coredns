@@ -21,18 +21,6 @@ create:
     namespace: "kube-system"
     releaseName: "temp-coredns"
 
-controller:
-  name: "temp-coredns"
-
-  configmap:
-    name: "temp-coredns"
-
-  role:
-    name: "temp-coredns-role"
-
-  service:
-    enabled: false
-
 helm:
   tillerNamespace: "giantswarm"
 
