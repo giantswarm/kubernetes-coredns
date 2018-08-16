@@ -15,6 +15,11 @@ cnr:
   organization: "giantswarm"
 
 create:
+  name: "temp-coredns"
+  cluster:
+    kubernetes:
+      DNS:
+        IP: 10.96.0.11
   chart:
     chartName: "kubernetes-coredns-chart"
     channelName: "0-1-stable"

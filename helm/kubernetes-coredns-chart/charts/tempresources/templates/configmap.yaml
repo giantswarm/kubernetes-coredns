@@ -35,6 +35,14 @@ data:
           keyFile: ''
   values.json: |
     {
+      "name": "{{ .Values.create.name }}",
+      "cluster": {
+        "kubernetes": {
+          "DNS": {
+            "IP": "{{.Values.create.cluster.kubernetes.DNS.IP}}"
+          }
+        }
+      }
     }
 
 {{- end }}
