@@ -17,7 +17,7 @@ cnr:
 create:
   chart:
     chartName: "kubernetes-coredns-chart"
-    channelName: "0-2-stable"
+    channelName: "0-1-stable"
     namespace: "kube-system"
     releaseName: "temp-coredns"
 
