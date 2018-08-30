@@ -32,7 +32,7 @@ func TestMigration(t *testing.T) {
 	if err != nil {
 		t.Fatalf("could not install resources chart: %v", err)
 	}
-	defer helmClient.DeleteRelease("resources", helm.DeletePurge())
+	defer helmClient.DeleteRelease("resources", helm.DeletePurge(true))
 
 	// Check service is present.
 	err = checkServicePresent()
@@ -58,7 +58,7 @@ func TestMigration(t *testing.T) {
 	}
 	l.Log("level", "debug", "message", fmt.Sprintf("%s succesfully deployed", releaseName))
 
-	defer helmClient.DeleteRelease(releaseName, helm.DeletePurge())
+	defer helmClient.DeleteRelease(releaseName, helm.DeletePurge(true))
 
 	// Check legacy resources are present.
 	err = checkResourcesPresent("kind=legacy")
