@@ -8,7 +8,7 @@ namespace: kube-system
 image:
   registry: quay.io
   repository: giantswarm/k8s-migrator
-  tag: latest
+  tag: ec922677a345490198a49c08ce9c71e991063db8
 
 resources:
   limits:
