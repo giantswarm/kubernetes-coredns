@@ -14,12 +14,11 @@ metadata:
 data:
   config.yaml: |
     service:
-      delete:
-        resources:
-          resourceFile: "/var/run/{{ .Values.name }}/configmap/resources.json"
-        wait:
-          deploymentName: "{{ .Values.delete.wait.deploymentName }}"
-          deploymentNamespace: "{{ .Values.namespace }}"
+      adopt:
+        chart:
+          path: "/var/run/{{ .Values.name }}/chart"
+          releaseName: "coredns"
+          namespace: "kube-system"
       kubernetes:
         address: ''
         inCluster: true

@@ -6,10 +6,10 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/giantswarm/e2e-harness/pkg/framework"
 	"github.com/giantswarm/microerror"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/helm/pkg/helm"
 
 	"github.com/giantswarm/kubernetes-coredns/integration/env"
 	"github.com/giantswarm/kubernetes-coredns/integration/templates"
@@ -28,11 +28,11 @@ const (
 // removed and the ones for coredns are in place.
 func TestMigration(t *testing.T) {
 	// Install legacy resources.
-	err := framework.HelmCmd("install /e2e/fixtures/resources-chart -n resources")
+	err := helmClient.InstallFromTarball("/e2e/fixtures/resources-chart", "default", helm.ReleaseName("resources"))
 	if err != nil {
 		t.Fatalf("could not install resources chart: %v", err)
 	}
-	defer framework.HelmCmd("delete resources --purge")
+	defer helmClient.DeleteRelease("resources", helm.DeletePurge())
 
 	// Check service is present.
 	err = checkServicePresent()
@@ -43,11 +43,6 @@ func TestMigration(t *testing.T) {
 	err = checkResourcesPresent("kind=legacy")
 	if err != nil {
 		t.Fatalf("legacy resources present: %v", err)
-	}
-	// Check managed resources are not present.
-	err = checkResourcesNotPresent("giantswarm.io/service-type=managed")
-	if err != nil {
-		t.Fatalf("managed resources not present: %v", err)
 	}
 
 	channel := fmt.Sprintf("%s-%s", env.CircleSHA(), testName)
@@ -63,23 +58,21 @@ func TestMigration(t *testing.T) {
 	}
 	l.Log("level", "debug", "message", fmt.Sprintf("%s succesfully deployed", releaseName))
 
-	defer framework.HelmCmd(fmt.Sprintf("delete %s --purge", releaseName))
+	defer helmClient.DeleteRelease(releaseName, helm.DeletePurge())
 
-	// Check legacy resources are not present.
-	err = checkResourcesNotPresent("kind=legacy")
+	// Check legacy resources are present.
+	err = checkResourcesPresent("kind=legacy")
 	if err != nil {
 		t.Fatalf("legacy resources present: %v", err)
-	}
-	// Check managed resources are present.
-	err = checkResourcesPresent("giantswarm.io/service-type=managed")
-	if err != nil {
-		t.Fatalf("managed resources not present: %v", err)
 	}
 	// Check service is still present.
 	err = checkServicePresent()
 	if err != nil {
 		t.Fatalf("service present: %v", err)
 	}
+
+	// TODO: check release has the right resources
+
 }
 
 func checkServicePresent() error {

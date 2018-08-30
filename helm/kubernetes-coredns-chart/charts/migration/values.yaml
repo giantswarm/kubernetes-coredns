@@ -10,10 +10,6 @@ image:
   repository: giantswarm/k8s-migrator
   tag: latest
 
-delete:
-  wait:
-    deploymentName: "temp-coredns"
-
 resources:
   limits:
     cpu: 50m
