@@ -30,7 +30,7 @@ spec:
         - name: {{ .Values.name }}
           mountPath: /var/run/{{ .Values.name }}/configmap/
         args:
-        - delete
+        - adopt
         - --config.dirs=/var/run/{{ .Values.name }}/configmap/
         - --config.files=config
         resources:
