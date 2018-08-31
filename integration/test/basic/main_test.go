@@ -50,17 +50,6 @@ func init() {
 	}
 
 	{
-		c := deployment.Config{
-			K8sClient: h.K8sClient(),
-			Logger:    l,
-		}
-		d, err = deployment.New(c)
-		if err != nil {
-			panic(err.Error())
-		}
-	}
-
-	{
 		c := apprclient.Config{
 			Fs:     afero.NewOsFs(),
 			Logger: l,
@@ -81,6 +70,17 @@ func init() {
 			VaultToken: "na",
 		}
 		h, err = framework.NewHost(c)
+		if err != nil {
+			panic(err.Error())
+		}
+	}
+
+	{
+		c := deployment.Config{
+			K8sClient: h.K8sClient(),
+			Logger:    l,
+		}
+		d, err = deployment.New(c)
 		if err != nil {
 			panic(err.Error())
 		}
