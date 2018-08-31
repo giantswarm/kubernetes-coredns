@@ -49,7 +49,7 @@ func init() {
 			Logger:          l,
 			K8sClient:       h.K8sClient(),
 			RestConfig:      h.RestConfig(),
-			TillerNamespace: "giantswarm",
+			TillerNamespace: "kube-system",
 		}
 		helmClient, err = helmclient.New(c)
 		if err != nil {
