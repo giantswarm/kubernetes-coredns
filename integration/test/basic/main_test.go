@@ -3,24 +3,39 @@
 package basic
 
 import (
+	"context"
+	"fmt"
+	"os"
 	"testing"
 
+	"github.com/giantswarm/apprclient"
 	"github.com/giantswarm/e2e-harness/pkg/framework"
 	"github.com/giantswarm/e2e-harness/pkg/framework/deployment"
-	"github.com/giantswarm/e2e-harness/pkg/framework/resource"
+	e2esetup "github.com/giantswarm/e2esetup/chart"
+	"github.com/giantswarm/e2esetup/chart/env"
+	"github.com/giantswarm/e2etests/managedservices"
 	"github.com/giantswarm/helmclient"
 	"github.com/giantswarm/micrologger"
+	"github.com/spf13/afero"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/giantswarm/kubernetes-coredns/integration/setup"
+	"github.com/giantswarm/kubernetes-coredns/integration/templates"
+)
+
+const (
+	testName = "basic"
+
+	coreDNSName = "coredns"
+	chartName   = "kubernetes-coredns"
 )
 
 var (
+	a          *apprclient.Client
 	d          *deployment.Deployment
+	ms         *managedservices.ManagedServices
 	h          *framework.Host
 	helmClient *helmclient.Client
 	l          micrologger.Logger
-	r          *resource.Resource
 )
 
 func init() {
@@ -29,6 +44,20 @@ func init() {
 	{
 		c := micrologger.Config{}
 		l, err = micrologger.New(c)
+		if err != nil {
+			panic(err.Error())
+		}
+	}
+
+	{
+		c := apprclient.Config{
+			Fs:     afero.NewOsFs(),
+			Logger: l,
+
+			Address:      "https://quay.io",
+			Organization: "giantswarm",
+		}
+		a, err = apprclient.New(c)
 		if err != nil {
 			panic(err.Error())
 		}
@@ -71,12 +100,37 @@ func init() {
 	}
 
 	{
-		c := resource.ResourceConfig{
-			Logger:     l,
-			HelmClient: helmClient,
-			Namespace:  metav1.NamespaceSystem,
+		c := managedservices.Config{
+			ApprClient:    a,
+			HelmClient:    helmClient,
+			HostFramework: h,
+			Logger:        l,
+
+			ChartConfig: managedservices.ChartConfig{
+				ChannelName: fmt.Sprintf("%s-%s", env.CircleSHA(), testName),
+				ChartName:   chartName,
+				ChartValues: templates.CoreDNSValues,
+				Namespace:   metav1.NamespaceSystem,
+			},
+			ChartResources: managedservices.ChartResources{
+				Deployments: []managedservices.Deployment{
+					{
+						Name:      coreDNSName,
+						Namespace: metav1.NamespaceSystem,
+						Labels: map[string]string{
+							"giantswarm.io/service-type": "managed",
+							"k8s-app":                    coreDNSName,
+							"kubernetes.io/name":         "CoreDNS",
+						},
+						MatchLabels: map[string]string{
+							"k8s-app": coreDNSName,
+						},
+						Replicas: 2,
+					},
+				},
+			},
 		}
-		r, err = resource.New(c)
+		ms, err = managedservices.New(c)
 		if err != nil {
 			panic(err.Error())
 		}
@@ -86,5 +140,18 @@ func init() {
 // TestMain allows us to have common setup and teardown steps that are run
 // once for all the tests https://golang.org/pkg/testing/#hdr-Main.
 func TestMain(m *testing.M) {
-	setup.WrapTestMain(h, helmClient, m)
+	ctx := context.Background()
+
+	{
+		c := e2esetup.Config{
+			HelmClient: helmClient,
+			Host:       h,
+		}
+
+		err := e2esetup.Setup(ctx, m, c)
+		if err != nil {
+			l.LogCtx(ctx, "level", "error", "message", "e2e test failed", "stack", fmt.Sprintf("%#v\n", err))
+			os.Exit(1)
+		}
+	}
 }

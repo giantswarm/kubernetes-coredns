@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/cenkalti/backoff"
 	"github.com/giantswarm/apprclient"
+	"github.com/giantswarm/backoff"
 	"github.com/giantswarm/helmclient"
 	"github.com/giantswarm/microerror"
 	"github.com/giantswarm/micrologger"
@@ -13,6 +13,10 @@ import (
 	"k8s.io/helm/pkg/helm"
 
 	"github.com/giantswarm/e2e-harness/pkg/framework"
+)
+
+const (
+	defaultNamespace = "default"
 )
 
 type ResourceConfig struct {
@@ -59,7 +63,7 @@ func New(config ResourceConfig) (*Resource, error) {
 		return nil, microerror.Maskf(invalidConfigError, "%T.HelmClient must not be empty", config)
 	}
 	if config.Namespace == "" {
-		config.Namespace = "giantswarm"
+		config.Namespace = defaultNamespace
 	}
 	c := &Resource{
 		apprClient: config.ApprClient,
@@ -85,7 +89,7 @@ func (r *Resource) InstallResource(name, values, channel string, conditions ...f
 	}
 
 	for _, c := range conditions {
-		err = backoff.Retry(c, framework.NewExponentialBackoff(framework.ShortMaxWait, framework.ShortMaxInterval))
+		err = backoff.Retry(c, backoff.NewExponential(framework.ShortMaxWait, framework.ShortMaxInterval))
 		if err != nil {
 			return microerror.Mask(err)
 		}
@@ -113,7 +117,10 @@ func (r *Resource) UpdateResource(name, values, channel string, conditions ...fu
 func (r *Resource) WaitForStatus(release string, status string) error {
 	operation := func() error {
 		rc, err := r.helmClient.GetReleaseContent(release)
-		if err != nil {
+		if helmclient.IsReleaseNotFound(err) && status == "DELETED" {
+			// Error is expected because we purge releases when deleting.
+			return nil
+		} else if err != nil {
 			return microerror.Mask(err)
 		}
 		if rc.Status != status {
@@ -126,7 +133,7 @@ func (r *Resource) WaitForStatus(release string, status string) error {
 		r.logger.Log("level", "debug", "message", fmt.Sprintf("failed to get release status '%s': retrying in %s", status, t), "stack", fmt.Sprintf("%v", err))
 	}
 
-	b := framework.NewExponentialBackoff(framework.ShortMaxWait, framework.LongMaxInterval)
+	b := backoff.NewExponential(framework.ShortMaxWait, framework.LongMaxInterval)
 	err := backoff.RetryNotify(operation, b, notify)
 	if err != nil {
 		return microerror.Mask(err)
@@ -150,7 +157,7 @@ func (r *Resource) WaitForVersion(release string, version string) error {
 		r.logger.Log("level", "debug", "message", fmt.Sprintf("failed to get release version '%s': retrying in %s", version, t), "stack", fmt.Sprintf("%v", err))
 	}
 
-	b := framework.NewExponentialBackoff(framework.ShortMaxWait, framework.LongMaxInterval)
+	b := backoff.NewExponential(framework.ShortMaxWait, framework.LongMaxInterval)
 	err := backoff.RetryNotify(operation, b, notify)
 	if err != nil {
 		return microerror.Mask(err)
