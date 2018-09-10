@@ -19,6 +19,8 @@ data:
           path: "/var/run/{{ .Values.name }}/chart"
           releaseName: "coredns"
           namespace: "kube-system"
+        resources:
+          resourceFile: "/var/run/{{ .Values.name }}/configmap/resources.json"
       kubernetes:
         address: ''
         inCluster: true
