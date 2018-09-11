@@ -43,7 +43,7 @@ data:
         },
         {
             "kind": "ConfigMap",
-            "name": "coredns,
+            "name": "coredns",
             "namespace": "kube-system",
             "matchLabels": {
                 "k8s-addon": "coredns.addons.k8s.io"
