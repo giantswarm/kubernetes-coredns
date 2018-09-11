@@ -27,8 +27,18 @@ const (
 // coredns chart and checks that the previous resources are
 // removed and the ones for coredns are in place.
 func TestMigration(t *testing.T) {
+	// Create gs namespace for tiller.
+	err := h.CreateNamespace("giantswarm")
+	if err != nil {
+		t.Fatalf("could not create gs namespace: %v", err)
+	}
+	err = helmClient.EnsureTillerInstalled()
+	if err != nil {
+		t.Fatalf("could not install tiller: %v", err)
+	}
+
 	// Install legacy resources.
-	err := helmClient.InstallFromTarball("/e2e/fixtures/resources-chart", "default", helm.ReleaseName("resources"))
+	err = helmClient.InstallFromTarball("/e2e/fixtures/resources-chart", resourceNamespace, helm.ReleaseName("resources"))
 	if err != nil {
 		t.Fatalf("could not install resources chart: %v", err)
 	}
