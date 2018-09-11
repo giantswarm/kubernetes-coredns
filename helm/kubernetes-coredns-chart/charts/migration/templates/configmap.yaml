@@ -55,7 +55,6 @@ data:
         {
             "kind": "ClusterRoleBinding",
             "name": "coredns",
-            "namespace": "kube-system",
             "matchLabels": {
                 "k8s-app": "coredns"
             },
@@ -66,7 +65,6 @@ data:
         {
             "kind": "ClusterRole",
             "name": "coredns",
-            "namespace": "kube-system",
             "matchLabels": {
                 "k8s-app": "coredns"
             },
