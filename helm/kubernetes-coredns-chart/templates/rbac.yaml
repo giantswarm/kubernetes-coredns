@@ -1,4 +1,3 @@
-{{- if not .Values.global.migration.job.enabled }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -41,4 +40,3 @@ subjects:
 - kind: ServiceAccount
   name: {{ .Values.name }}
   namespace: {{ .Values.namespace }}
-{{- end }}
