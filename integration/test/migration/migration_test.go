@@ -70,19 +70,22 @@ func TestMigration(t *testing.T) {
 
 	defer helmClient.DeleteRelease(releaseName, helm.DeletePurge(true))
 
-	// Check legacy resources are present.
-	err = checkResourcesPresent("kind=legacy")
+	// Check legacy resources are not present.
+	err = checkResourcesNotPresent("kind=legacy")
 	if err != nil {
 		t.Fatalf("legacy resources present: %v", err)
 	}
+	// Check managed resources are present.
+	err = checkResourcesPresent("giantswarm.io/service-type=managed")
+	if err != nil {
+		t.Fatalf("managed resources not present: %v", err)
+	}
+
 	// Check service is still present.
 	err = checkServicePresent()
 	if err != nil {
 		t.Fatalf("service present: %v", err)
 	}
-
-	// TODO: check release has the right resources
-
 }
 
 func checkServicePresent() error {

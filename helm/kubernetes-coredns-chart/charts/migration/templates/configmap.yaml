@@ -14,11 +14,7 @@ metadata:
 data:
   config.yaml: |
     service:
-      adopt:
-        chart:
-          path: "/var/run/{{ .Values.name }}/chart"
-          releaseName: "coredns"
-          namespace: "kube-system"
+      delete:
         resources:
           resourceFile: "/var/run/{{ .Values.name }}/configmap/resources.json"
       kubernetes:
