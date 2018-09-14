@@ -27,6 +27,17 @@ data:
   resources.json: |
     [
         {
+            "kind": "Service",
+            "name": "coredns",
+            "namespace": "kube-system",
+            "matchLabels": {
+                "k8s-app": "coredns"
+            },
+            "excludeLabels": {
+                "giantswarm.io/service-type": "managed"
+            }
+        },
+        {
             "kind": "Deployment",
             "name": "coredns",
             "namespace": "kube-system",
