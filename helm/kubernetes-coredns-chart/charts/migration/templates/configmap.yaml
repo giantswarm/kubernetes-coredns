@@ -50,7 +50,7 @@ data:
         },
         {
             "kind": "ClusterRoleBinding",
-            "name": "coredns",
+            "name": "system:coredns",
             "matchLabels": {
                 "k8s-app": "coredns"
             },
@@ -60,7 +60,7 @@ data:
         },
         {
             "kind": "ClusterRole",
-            "name": "coredns",
+            "name": "system:coredns",
             "matchLabels": {
                 "k8s-app": "coredns"
             },
