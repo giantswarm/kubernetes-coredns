@@ -34,11 +34,6 @@ cluster:
       IP: 172.31.0.0
     domain: cluster.local
 
-global:
-  migration:
-    job:
-      enabled: false
-
 test:
   image:
     registry: quay.io

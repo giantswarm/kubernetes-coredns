@@ -1,4 +1,3 @@
-{{- if .Values.global.migration.job.enabled }}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -37,4 +36,3 @@ spec:
 {{ toYaml .Values.resources | indent 10 }}
       restartPolicy: Never
   backoffLimit: 4
-{{- end }}

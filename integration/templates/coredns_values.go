@@ -11,9 +11,4 @@ cluster:
       clusterIPRange: 10.96.0.0/16
     DNS:
       IP: 10.96.0.10
-
-global:
-  migration:
-    job:
-      enabled: true
 `
