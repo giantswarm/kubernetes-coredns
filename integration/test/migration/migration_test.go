@@ -76,7 +76,7 @@ func TestMigration(t *testing.T) {
 		t.Fatalf("legacy resources present: %v", err)
 	}
 	// Check managed resources are present.
-	err = checkResourcesPresent("giantswarm.io/service-type=managed")
+	err = checkResourcesPresent("k8s-app=coredns,giantswarm.io/service-type=managed")
 	if err != nil {
 		t.Fatalf("managed resources not present: %v", err)
 	}
@@ -108,7 +108,7 @@ func checkServicePresent() error {
 func checkResourcesPresent(labelSelector string) error {
 	c := h.K8sClient()
 	listOptions := metav1.ListOptions{
-		LabelSelector: fmt.Sprintf("k8s-app=coredns,%s", labelSelector),
+		LabelSelector: labelSelector,
 	}
 
 	cm, err := c.Core().ConfigMaps(resourceNamespace).List(listOptions)
