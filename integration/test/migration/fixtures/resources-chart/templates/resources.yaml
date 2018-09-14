@@ -4,7 +4,6 @@ metadata:
   name: coredns
   namespace: kube-system
   labels:
-    k8s-app: coredns
     kind: legacy
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -12,7 +11,6 @@ kind: ClusterRole
 metadata:
   labels:
     kubernetes.io/bootstrapping: rbac-defaults
-    k8s-app: coredns
     kind: legacy
   name: system:coredns
 rules:
@@ -33,9 +31,7 @@ metadata:
   annotations:
     rbac.authorization.kubernetes.io/autoupdate: "true"
   labels:
-    k8s-app: coredns
     kind: legacy
-    kubernetes.io/bootstrapping: rbac-defaults
   name: system:coredns
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -52,7 +48,6 @@ metadata:
   name: coredns
   namespace: kube-system
   labels:
-    k8s-app: coredns
     kind: legacy
 data:
   Corefile: |

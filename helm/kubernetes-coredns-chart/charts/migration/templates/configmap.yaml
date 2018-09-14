@@ -52,9 +52,6 @@ data:
             "kind": "ConfigMap",
             "name": "coredns",
             "namespace": "kube-system",
-            "matchLabels": {
-                "k8s-app": "coredns"
-            },
             "excludeLabels": {
                 "giantswarm.io/service-type": "managed"
             }
@@ -62,9 +59,6 @@ data:
         {
             "kind": "ClusterRoleBinding",
             "name": "system:coredns",
-            "matchLabels": {
-                "k8s-app": "coredns"
-            },
             "excludeLabels": {
                 "giantswarm.io/service-type": "managed"
             }
@@ -72,9 +66,6 @@ data:
         {
             "kind": "ClusterRole",
             "name": "system:coredns",
-            "matchLabels": {
-                "k8s-app": "coredns"
-            },
             "excludeLabels": {
                 "giantswarm.io/service-type": "managed"
             }
@@ -83,9 +74,6 @@ data:
             "kind": "ServiceAccount",
             "name": "coredns",
             "namespace": "kube-system",
-            "matchLabels": {
-                "k8s-app": "coredns"
-            },
             "excludeLabels": {
                 "giantswarm.io/service-type": "managed"
             }
