@@ -28,17 +28,12 @@ const (
 // removed and the ones for coredns are in place.
 func TestMigration(t *testing.T) {
 	// Install legacy resources.
-	err = helmClient.InstallFromTarball("/e2e/fixtures/resources-chart", resourceNamespace, helm.ReleaseName("resources"))
+	err := helmClient.InstallFromTarball("/e2e/fixtures/resources-chart", resourceNamespace, helm.ReleaseName("resources"))
 	if err != nil {
 		t.Fatalf("could not install resources chart: %v", err)
 	}
 	defer helmClient.DeleteRelease("resources", helm.DeletePurge(true))
 
-	// Check service is present.
-	err = checkServicePresent()
-	if err != nil {
-		t.Fatalf("controller service present: %v", err)
-	}
 	// Check legacy resources are present.
 	err = checkResourcesPresent("kind=legacy")
 	if err != nil {
