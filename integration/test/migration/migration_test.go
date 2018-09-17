@@ -11,7 +11,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/helm/pkg/helm"
 
-	"github.com/giantswarm/kubernetes-coredns/integration/env"
+	"github.com/giantswarm/e2esetup/chart/env"
 	"github.com/giantswarm/kubernetes-coredns/integration/templates"
 )
 
