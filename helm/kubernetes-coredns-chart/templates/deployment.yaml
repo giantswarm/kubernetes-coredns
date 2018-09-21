@@ -22,7 +22,7 @@ spec:
         kubernetes.io/name: "CoreDNS"
     spec:
       serviceAccountName: {{ .Values.name }}
-      priorityClassName: important-pods
+      priorityClassName: system-cluster-critical
       tolerations:
         - key: node-role.kubernetes.io/master
           effect: NoSchedule
