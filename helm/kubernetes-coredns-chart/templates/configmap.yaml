@@ -10,7 +10,7 @@ metadata:
 data:
   Corefile: |
     .:{{ .Values.ports.dns.port }} {
-        cache: {{ .Values.configmap.cache }}
+        cache {{ .Values.configmap.cache }}
         errors
         health
         kubernetes {{ .Values.cluster.kubernetes.domain }} {{ .Values.cluster.kubernetes.API.clusterIPRange }} {{ .Values.cluster.calico.CIDR }} {
