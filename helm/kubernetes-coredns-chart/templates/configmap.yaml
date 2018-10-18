@@ -17,6 +17,10 @@ data:
           upstream
           fallthrough in-addr.arpa ip6.arpa
         }
+        log . {
+          class denial
+          class error
+        }
         prometheus :{{ .Values.ports.prometheus }}
         proxy . /etc/resolv.conf
         cache 30
