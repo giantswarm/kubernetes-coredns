@@ -20,8 +20,8 @@ data:
         }
         prometheus :{{ .Values.ports.prometheus }}
 
-        {{- if .Values.configmap.additionalProxies }}
-        {{ .Values.configmap.additionalProxies }}
+        {{- range .Values.configmap.proxy }}
+        proxy {{ . }}
         {{- end }}
         proxy . /etc/resolv.conf
     }
