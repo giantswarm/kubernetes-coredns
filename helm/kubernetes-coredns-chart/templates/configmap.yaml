@@ -10,14 +10,18 @@ metadata:
 data:
   Corefile: |
     .:{{ .Values.ports.dns.port }} {
+        cache {{ .Values.configmap.cache }}
         errors
         health
         kubernetes {{ .Values.cluster.kubernetes.domain }} {{ .Values.cluster.kubernetes.API.clusterIPRange }} {{ .Values.cluster.calico.CIDR }} {
+          fallthrough in-addr.arpa ip6.arpa
           pods insecure
           upstream
-          fallthrough in-addr.arpa ip6.arpa
         }
         prometheus :{{ .Values.ports.prometheus }}
+
+        {{- range .Values.configmap.proxy }}
+        proxy {{ . }}
+        {{- end }}
         proxy . /etc/resolv.conf
-        cache 30
     }
