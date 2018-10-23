@@ -8,6 +8,9 @@ serviceType: managed
 
 replicas: 2
 
+configmap:
+  cache: 30
+
 image:
   registry: quay.io
   repository: giantswarm/coredns
