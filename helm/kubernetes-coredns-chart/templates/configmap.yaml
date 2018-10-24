@@ -18,6 +18,10 @@ data:
           pods insecure
           upstream
         }
+        log . {
+          class denial
+          class error
+        }
         prometheus :{{ .Values.ports.prometheus }}
 
         {{- range .Values.configmap.proxy }}
