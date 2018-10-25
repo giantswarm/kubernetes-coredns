@@ -26,7 +26,7 @@ data:
 
         {{- if .Values.configmap.proxy }}
         {{- range (.Values.configmap.proxy | trimAll "\n " |  split "\n") }}
-        proxy {{ . | trimAll "- " }}
+        proxy {{ . }}
         {{- end }}
         {{- end }}
         proxy . /etc/resolv.conf
