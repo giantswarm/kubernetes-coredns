@@ -53,6 +53,13 @@ spec:
         - containerPort: {{ .Values.ports.dns.port }}
           name: {{ .Values.ports.dns.name }}-tcp
           protocol: TCP
+        resources:
+          limits:
+            cpu: 250m
+            memory: 128Mi
+          requests:
+            cpu: 250m
+            memory: 128Mi
         livenessProbe:
           httpGet:
             path: /health
