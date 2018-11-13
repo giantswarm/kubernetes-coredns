@@ -3,8 +3,8 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: coredns
 spec:
-  maxReplicas: 10
-  minReplicas: 2
+  maxReplicas: {{ .Values.maxReplicas }}
+  minReplicas: {{ .Values.minReplicas }}
   scaleTargetRef:
     apiVersion: extensions/v1beta1
     kind: Deployment
