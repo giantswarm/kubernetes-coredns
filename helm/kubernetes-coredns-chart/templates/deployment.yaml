@@ -23,9 +23,6 @@ spec:
     spec:
       serviceAccountName: {{ .Values.name }}
       priorityClassName: system-cluster-critical
-      tolerations:
-        - key: node-role.kubernetes.io/master
-          effect: NoSchedule
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
