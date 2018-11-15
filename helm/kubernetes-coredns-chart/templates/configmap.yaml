@@ -22,7 +22,7 @@ data:
           class denial
           class error
         }
-        loadbalance {{ .Values.loadbalance.policy }}
+        loadbalance {{ .Values.loadbalancePolicy }}
         prometheus :{{ .Values.ports.prometheus }}
 
         {{- if .Values.configmap.proxy }}

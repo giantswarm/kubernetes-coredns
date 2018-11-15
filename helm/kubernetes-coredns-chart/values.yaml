@@ -38,8 +38,7 @@ cluster:
       IP: 172.31.0.0
     domain: cluster.local
 
-loadbalance:
-  policy: round_robin
+loadbalancePolicy: round_robin
 
 test:
   image:
