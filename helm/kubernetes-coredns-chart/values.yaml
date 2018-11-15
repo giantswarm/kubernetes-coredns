@@ -41,7 +41,6 @@ cluster:
 loadbalance:
   policy: round_robin
 
-
 test:
   image:
     registry: quay.io
