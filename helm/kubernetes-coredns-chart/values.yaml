@@ -38,6 +38,8 @@ cluster:
       IP: 172.31.0.0
     domain: cluster.local
 
+loadbalancePolicy: round_robin
+
 test:
   image:
     registry: quay.io
