@@ -31,4 +31,5 @@ data:
         {{- end }}
         {{- end }}
         proxy . /etc/resolv.conf
+        autopath @kubernetes
     }
