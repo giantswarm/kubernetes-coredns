@@ -44,7 +44,7 @@ required = [
   name = "github.com/giantswarm/e2esetup"
 
 [[constraint]]
-  branch = "master"
+  branch = "labels-independent"
   name = "github.com/giantswarm/e2etests"
 
 [[constraint]]
