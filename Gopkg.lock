@@ -130,22 +130,22 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:c58627463f5163529d6d17186fb6977b91bd100cda7e2cddb30fd87b64d289dd"
+  digest = "1:bb9487d2860273b3c00c740ab9671b8cf0eb3b8540f2f05664730aefba8b0673"
   name = "github.com/giantswarm/e2esetup"
   packages = [
     "chart",
     "chart/env",
   ]
   pruneopts = "UT"
-  revision = "4e790eb032b59136b2a946e1ead01592df4c870a"
+  revision = "9f1a99dbf36afaad886ee9f01e5661a5d641d826"
 
 [[projects]]
-  branch = "labels-independent"
+  branch = "master"
   digest = "1:2b1590a5fb92997b3d4ea22fcea9e5ab09aadf277fac1d9c4f294845b6cda9fd"
   name = "github.com/giantswarm/e2etests"
   packages = ["managedservices"]
   pruneopts = "UT"
-  revision = "3de2ce9ae54dbb3397ce50b66bdff09894d3055e"
+  revision = "f4d1e78f2af58dc3e9181a0a34c20b16430a538b"
 
 [[projects]]
   branch = "master"
