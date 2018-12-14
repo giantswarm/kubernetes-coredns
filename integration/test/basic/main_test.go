@@ -121,7 +121,7 @@ func init() {
 						Name:      coreDNSName,
 						Namespace: metav1.NamespaceSystem,
 						Labels: map[string]string{
-							"cluster-autoscaler.kubernetes.io/safe-to-evict": "true"
+							"cluster-autoscaler.kubernetes.io/safe-to-evict": "true",
 							"giantswarm.io/service-type":                     "managed",
 							"k8s-app":                                        coreDNSName,
 							"kubernetes.io/name":                             "CoreDNS",
