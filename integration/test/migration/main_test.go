@@ -59,7 +59,7 @@ func init() {
 		}
 	}
 
-	resourceConfig := resource.ResourceConfig{
+	resourceConfig := resource.Config{
 		Logger:     l,
 		HelmClient: helmClient,
 		Namespace:  metav1.NamespaceSystem,
