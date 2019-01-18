@@ -3,6 +3,7 @@
 package migration
 
 import (
+	"context"
 	"fmt"
 	"testing"
 
@@ -27,12 +28,13 @@ const (
 // coredns chart and checks that the previous resources are
 // removed and the ones for coredns are in place.
 func TestMigration(t *testing.T) {
+	ctx := context.Background()
 	// Install legacy resources.
-	err := helmClient.InstallFromTarball("/e2e/fixtures/resources-chart", resourceNamespace, helm.ReleaseName("resources"))
+	err := helmClient.InstallReleaseFromTarball(ctx, "/e2e/fixtures/resources-chart", resourceNamespace, helm.ReleaseName("resources"))
 	if err != nil {
 		t.Fatalf("could not install resources chart: %v", err)
 	}
-	defer helmClient.DeleteRelease("resources", helm.DeletePurge(true))
+	defer helmClient.DeleteRelease(ctx, "resources", helm.DeletePurge(true))
 
 	// Check legacy resources are present.
 	err = checkResourcesPresent("kind=legacy")
@@ -42,7 +44,7 @@ func TestMigration(t *testing.T) {
 
 	channel := fmt.Sprintf("%s-%s", env.CircleSHA(), testName)
 	releaseName := "kubernetes-coredns"
-	err = r.InstallResource(releaseName, templates.CoreDNSValues, channel)
+	err = r.Install(releaseName, templates.CoreDNSValues, channel)
 	if err != nil {
 		t.Fatalf("could not install %q %v", releaseName, err)
 	}
@@ -53,7 +55,7 @@ func TestMigration(t *testing.T) {
 	}
 	l.Log("level", "debug", "message", fmt.Sprintf("%s succesfully deployed", releaseName))
 
-	defer helmClient.DeleteRelease(releaseName, helm.DeletePurge(true))
+	defer helmClient.DeleteRelease(ctx, releaseName, helm.DeletePurge(true))
 
 	// Check legacy resources are not present.
 	err = checkResourcesNotPresent("kind=legacy")
