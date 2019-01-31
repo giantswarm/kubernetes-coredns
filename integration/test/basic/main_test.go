@@ -129,10 +129,9 @@ func init() {
 							"k8s-app": coreDNSName,
 						},
 						PodLabels: map[string]string{
-							"cluster-autoscaler.kubernetes.io/safe-to-evict": "true",
-							"giantswarm.io/service-type":                     "managed",
-							"k8s-app":                                        coreDNSName,
-							"kubernetes.io/name":                             "CoreDNS",
+							"giantswarm.io/service-type": "managed",
+							"k8s-app":                    coreDNSName,
+							"kubernetes.io/name":         "CoreDNS",
 						},
 						Replicas: 2,
 					},

@@ -16,8 +16,9 @@ spec:
       k8s-app: {{ .Values.name }}
   template:
     metadata:
-      labels:
+      annotations:
         cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
+      labels:
         giantswarm.io/service-type: "{{ .Values.serviceType }}"
         k8s-app: {{ .Values.name }}
         kubernetes.io/name: "CoreDNS"
