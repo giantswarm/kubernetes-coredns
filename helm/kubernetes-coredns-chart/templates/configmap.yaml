@@ -31,5 +31,6 @@ data:
         {{- end }}
         {{- end }}
         proxy . /etc/resolv.conf
+        reload
         autopath @kubernetes
     }
