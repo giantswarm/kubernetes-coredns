@@ -31,10 +31,8 @@ data:
         {{- end }}
         {{- end }}
 
-        {{- range .custom_plugins }}
-          {{ .name }}{{ if .parameters }} {{ .parameters }}{{ end }}{{ if .configBlock }} {
-{{ .configBlock | indent 12 }}
-          }{{ end }}
+        {{- if .Values.configmap.custom }}
+        {{ .Values.configmap.custom }}
         {{- end }}
 
         proxy . /etc/resolv.conf
