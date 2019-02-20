@@ -11,7 +11,9 @@ maxReplicas: 10
 
 configmap:
   cache: 30
-  custom: ""
+  custom: |
+    proxy 11.1.1
+    cache 23
 
 image:
   registry: quay.io

@@ -10,7 +10,7 @@ metadata:
 data:
   Corefile: |
     .:{{ .Values.ports.dns.port }} {
-        {{- if not (contains .Values.configmap.custom "cache") }}
+        {{- if not (contains "cache" .Values.configmap.custom) }}
         cache {{ .Values.configmap.cache }}
         {{- end }}
         errors
