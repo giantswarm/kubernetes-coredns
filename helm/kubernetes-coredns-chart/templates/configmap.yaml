@@ -32,7 +32,9 @@ data:
         {{- end }}
 
         {{- if .Values.configmap.custom }}
-        {{ .Values.configmap.custom }}
+        {{- range (.Values.configmap.custom | trimAll "\n " |  split "\n") }}
+        {{ . }}
+        {{- end }}
         {{- end }}
 
         proxy . /etc/resolv.conf
