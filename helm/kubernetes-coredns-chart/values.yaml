@@ -11,6 +11,12 @@ maxReplicas: 10
 
 configmap:
   cache: 30
+#  custom_plugins:                  # extra plugin blocks to be configured
+#   - name: proxy                  # name of plugin, if used multiple times ensure that the plugin supports it!
+#     parameters: foo.org 1.1.1.1  # list of parameters after the plugin
+#     configBlock: |-              # block config it has sense for the plugin
+#       policy least_conn
+#       spray
 
 image:
   registry: quay.io

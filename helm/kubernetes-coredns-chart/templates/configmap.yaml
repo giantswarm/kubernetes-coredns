@@ -30,6 +30,13 @@ data:
         proxy {{ . }}
         {{- end }}
         {{- end }}
+
+        {{- range .custom_plugins }}
+          {{ .name }}{{ if .parameters }} {{ .parameters }}{{ end }}{{ if .configBlock }} {
+{{ .configBlock | indent 12 }}
+          }{{ end }}
+        {{- end }}
+
         proxy . /etc/resolv.conf
         reload
         autopath @kubernetes
