@@ -10,7 +10,9 @@ metadata:
 data:
   Corefile: |
     .:{{ .Values.ports.dns.port }} {
+        {{- if not (contains "cache" .Values.configmap.custom) }}
         cache {{ .Values.configmap.cache }}
+        {{- end }}
         errors
         health
         kubernetes {{ .Values.cluster.kubernetes.domain }} {{ .Values.cluster.kubernetes.API.clusterIPRange }} {{ .Values.cluster.calico.CIDR }} {
@@ -30,6 +32,13 @@ data:
         proxy {{ . }}
         {{- end }}
         {{- end }}
+
+        {{- if .Values.configmap.custom }}
+        {{- range (.Values.configmap.custom | trimAll "\n " |  split "\n") }}
+        {{ . }}
+        {{- end }}
+        {{- end }}
+
         proxy . /etc/resolv.conf
         reload
         autopath @kubernetes
