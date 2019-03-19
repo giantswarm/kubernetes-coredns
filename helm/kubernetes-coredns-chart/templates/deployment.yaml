@@ -45,6 +45,9 @@ spec:
         volumeMounts:
         - name: config-volume
           mountPath: /etc/coredns
+        # We need to create the /tmp folder to avoid CoreDNS crash when api-server is down
+        - mountPath: /tmp/
+          name: temp-volume
         ports:
         - containerPort: {{ .Values.ports.dns.port }}
           name: {{ .Values.ports.dns.name }}
@@ -76,3 +79,6 @@ spec:
             items:
             - key: Corefile
               path: Corefile
+        # We need to create the /tmp folder to avoid CoreDNS crash during api-server is down
+        - emptyDir: {}
+          name: temp-volume
