@@ -28,18 +28,15 @@ data:
         prometheus :{{ .Values.ports.prometheus }}
 
         {{- if .Values.configmap.forward }}
-        {{- range (.Values.configmap.forward | trimAll "\n " |  split "\n") }}
-        forward {{ . }}
-        {{- end }}
+        forward . {{- range (.Values.configmap.forward | trimAll "\n " |  split "\n") }}{{ . }}{{- end }} /etc/resolv.conf
         {{- end }}
 
-        {{- if .Values.configmap.custom }}
-        {{- range (.Values.configmap.custom | trimAll "\n " |  split "\n") }}
-        {{ . }}
-        {{- end }}
-        {{- end }}
-
-        forward . /etc/resolv.conf
         reload
         autopath @kubernetes
     }
+
+    {{- if .Values.configmap.custom }}
+    {{- range (.Values.configmap.custom | trimAll "\n " |  split "\n") }}
+    {{ . }}
+    {{- end }}
+    {{- end }}
