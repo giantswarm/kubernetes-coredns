@@ -8,7 +8,7 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 ## [v0.4.0]
 
 ### Added
-- Added new CoreDNS version 1.4.0 ([release notes](https://coredns.io/2019/03/03/coredns-1.4.0-release/)).
+- Add new CoreDNS version 1.4.0 ([release notes](https://coredns.io/2019/03/03/coredns-1.4.0-release/)).
 
 ### Changed
 - Changed general server block resolvers. Now it uses `forward` plugin to route DNS request to upstreams resolvers.
