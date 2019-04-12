@@ -27,19 +27,20 @@ data:
         loadbalance {{ .Values.loadbalancePolicy }}
         prometheus :{{ .Values.ports.prometheus }}
 
-        {{- if .Values.configmap.proxy }}
-        {{- range (.Values.configmap.proxy | trimAll "\n " |  split "\n") }}
-        proxy {{ . }}
-        {{- end }}
-        {{- end }}
-
-        {{- if .Values.configmap.custom }}
-        {{- range (.Values.configmap.custom | trimAll "\n " |  split "\n") }}
-        {{ . }}
-        {{- end }}
+        {{- if .Values.configmap.forward }}
+        forward . {{ range (.Values.configmap.forward | trimAll "\n " |  split "\n") }}{{ . }}{{ end }} /etc/resolv.conf {
+          policy sequential
+        }
+        {{- else }}
+        forward . /etc/resolv.conf
         {{- end }}
 
-        proxy . /etc/resolv.conf
         reload
         autopath @kubernetes
     }
+
+    {{- if .Values.configmap.custom }}
+    {{- range (.Values.configmap.custom | trimAll "\n " |  split "\n") }}
+    {{ . }}
+    {{- end }}
+    {{- end }}
