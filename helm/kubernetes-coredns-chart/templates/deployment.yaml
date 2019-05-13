@@ -42,6 +42,13 @@ spec:
         image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: IfNotPresent
         args: [ "-conf", "/etc/coredns/Corefile" ]
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            add:
+            - net_bind_service
+          runAsUser: {{ .Values.userID }}
+          runAsGroup: {{ .Values.groupID }}
         volumeMounts:
         - name: config-volume
           mountPath: /etc/coredns

@@ -6,6 +6,9 @@ name: coredns
 namespace: kube-system
 serviceType: managed
 
+userID: 33
+groupID: 33
+
 minReplicas: 2
 maxReplicas: 10
 
