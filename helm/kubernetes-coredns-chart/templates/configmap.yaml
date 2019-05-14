@@ -9,7 +9,7 @@ metadata:
     kubernetes.io/name: "CoreDNS"
 data:
   Corefile: |
-    .:{{ .Values.ports.dns.port }} {
+    .:{{ .Values.ports.dns.targetPort }} {
         {{- if not (contains "cache" .Values.configmap.custom) }}
         cache {{ .Values.configmap.cache }}
         {{- end }}

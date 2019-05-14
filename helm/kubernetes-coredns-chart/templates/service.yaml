@@ -15,7 +15,9 @@ spec:
   ports:
   - name: {{ .Values.ports.dns.name }}
     port: {{ .Values.ports.dns.port }}
+    targetPort: {{ .Values.ports.dns.targetPort }}
     protocol: UDP
   - name: {{ .Values.ports.dns.name }}-tcp
     port: {{ .Values.ports.dns.port }}
+    targetPort: {{ .Values.ports.dns.targetPort }}
     protocol: TCP

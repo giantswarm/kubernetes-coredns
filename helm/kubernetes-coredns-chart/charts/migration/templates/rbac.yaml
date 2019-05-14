@@ -76,6 +76,10 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: {{ .Values.name }}-psp-user
+  annotations:
+    "helm.sh/hook": "pre-install"
+    "helm.sh/hook-weight": "-1"
+    "helm.sh/hook-delete-policy": "hook-succeeded"
   labels:
     app: {{ .Values.name }}
     giantswarm.io/service-type: "managed"
@@ -93,6 +97,10 @@ kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: {{ .Values.name }}-psp
+  annotations:
+    "helm.sh/hook": "pre-install"
+    "helm.sh/hook-weight": "-1"
+    "helm.sh/hook-delete-policy": "hook-succeeded"
   labels:
     app: {{ .Values.name }}
     giantswarm.io/service-type: "managed"
