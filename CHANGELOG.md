@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project's packages adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v0.5.0]
+
+### Added
+
+- Separate pod security policy for coredns and coredns-migration workloads.
+- Security context with non-root user (`www-data`) for running coredns inside container.
+
+### Changed
+
+- Switched from port `53` to port `1053` for coredns inside container.
 
 ## [v0.4.1]
 

@@ -32,6 +32,9 @@ spec:
         - delete
         - --config.dirs=/var/run/{{ .Values.name }}/configmap/
         - --config.files=config
+        securityContext:
+          runAsUser: {{ .Values.userID }}
+          runAsGroup: {{ .Values.groupID }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
       restartPolicy: Never

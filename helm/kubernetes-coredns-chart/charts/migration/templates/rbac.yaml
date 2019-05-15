@@ -70,3 +70,45 @@ roleRef:
   kind: ClusterRole
   name: {{ .Values.name }}
   apiGroup: rbac.authorization.k8s.io
+# PSP rbac
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ .Values.name }}-psp-user
+  annotations:
+    "helm.sh/hook": "pre-install"
+    "helm.sh/hook-weight": "-1"
+    "helm.sh/hook-delete-policy": "hook-succeeded"
+  labels:
+    app: {{ .Values.name }}
+    giantswarm.io/service-type: "managed"
+rules:
+- apiGroups:
+  - extensions
+  resources:
+  - podsecuritypolicies
+  resourceNames:
+  - {{ .Values.name }}
+  verbs:
+  - use
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ .Values.name }}-psp
+  annotations:
+    "helm.sh/hook": "pre-install"
+    "helm.sh/hook-weight": "-1"
+    "helm.sh/hook-delete-policy": "hook-succeeded"
+  labels:
+    app: {{ .Values.name }}
+    giantswarm.io/service-type: "managed"
+subjects:
+- kind: ServiceAccount
+  name: {{ .Values.name }}
+  namespace: {{ .Values.namespace }}
+roleRef:
+  kind: ClusterRole
+  name: {{ .Values.name }}-psp-user
+  apiGroup: rbac.authorization.k8s.io

@@ -6,6 +6,9 @@ name: coredns
 namespace: kube-system
 serviceType: managed
 
+userID: 33
+groupID: 33
+
 minReplicas: 2
 maxReplicas: 10
 
@@ -16,7 +19,7 @@ configmap:
 image:
   registry: quay.io
   repository: giantswarm/coredns
-  tag: 1.5.0
+  tag: 1.5.0-giantswarm
 
 updateStrategy:
   type: RollingUpdate
@@ -26,6 +29,7 @@ updateStrategy:
 ports:
   dns:
     name: dns
+    targetPort: 1053
     port: 53
   prometheus: 9153
 
@@ -36,7 +40,7 @@ cluster:
     API:
       clusterIPRange: 172.31.0.0/16
     DNS:
-      IP: 172.31.0.0
+      IP: 172.31.0.10
     domain: cluster.local
 
 loadbalancePolicy: round_robin
