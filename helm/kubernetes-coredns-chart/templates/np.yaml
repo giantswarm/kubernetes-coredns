@@ -28,9 +28,4 @@ spec:
   podSelector:
     matchLabels:
       k8s-app: {{ .Values.name }}
-  ingress:
-  - ports:
-    - port: {{ .Values.ports.prometheus }}
-      protocol: TCP
-    from:
-    - namespaceSelector: {}
+  ingress: []
