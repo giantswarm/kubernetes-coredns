@@ -15,7 +15,7 @@ maxReplicas: 10
 configmap:
   cache: 30
   custom: ""
-  logs:
+  log:
   - denial
   - error
 
