@@ -42,6 +42,6 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 - Remove `proxy` configuration support as it is [deprecated by upstream](https://coredns.io/2019/03/03/coredns-1.4.0-release/). New server block with `forward` plugin has to be used, more info in our [docs](https://docs.giantswarm.io/guides/advanced-coredns-configuration/).
 
-[0.5.1]: https://github.com/giantswarm/kubernetes-coredns/pull/31
+[0.5.1]: https://github.com/giantswarm/kubernetes-coredns/pull/32
 [0.5.0]: https://github.com/giantswarm/kubernetes-coredns/pull/28
 [0.4.0]: https://github.com/giantswarm/kubernetes-coredns/pull/27
