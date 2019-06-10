@@ -15,6 +15,9 @@ maxReplicas: 10
 configmap:
   cache: 30
   custom: ""
+  logs:
+  - denial
+  - error
 
 image:
   registry: quay.io
