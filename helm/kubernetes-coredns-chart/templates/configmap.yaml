@@ -21,8 +21,9 @@ data:
           upstream
         }
         log . {
-          class denial
-          class error
+          {{- range (.Values.configmap.log | trimAll "\n " |  split "\n") }}
+          class {{ . }}
+          {{- end }}
         }
         loadbalance {{ .Values.loadbalancePolicy }}
         prometheus :{{ .Values.ports.prometheus }}

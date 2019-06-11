@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project's packages adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v0.5.1]
+
+### Added
+
+- Make `log` plugin verbosity configurable according to [levels available](https://github.com/coredns/coredns/tree/master/plugin/log).
+
 ## [v0.5.0]
 
 ### Added
@@ -36,5 +42,6 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 - Remove `proxy` configuration support as it is [deprecated by upstream](https://coredns.io/2019/03/03/coredns-1.4.0-release/). New server block with `forward` plugin has to be used, more info in our [docs](https://docs.giantswarm.io/guides/advanced-coredns-configuration/).
 
-
+[0.5.1]: https://github.com/giantswarm/kubernetes-coredns/pull/32
+[0.5.0]: https://github.com/giantswarm/kubernetes-coredns/pull/28
 [0.4.0]: https://github.com/giantswarm/kubernetes-coredns/pull/27
