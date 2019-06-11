@@ -21,8 +21,8 @@ data:
           upstream
         }
         log . {
-          {{- range (.Values.configmap.log) }}
-          class {{ . | trimAll "\n " }}
+          {{- range (.Values.configmap.logs | trimAll "\n " |  split "\n") }}
+          class {{ . }}
           {{- end }}
         }
         loadbalance {{ .Values.loadbalancePolicy }}
