@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/giantswarm/kubernetes-coredns/tree/master.svg?style=svg)](https://circleci.com/gh/giantswarm/kubernetes-coredns/tree/master)
+
 # kubernetes-coredns
 Helm Chart for CoreDNS in Guest Clusters.
 
