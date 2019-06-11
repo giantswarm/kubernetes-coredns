@@ -21,7 +21,7 @@ data:
           upstream
         }
         log . {
-          {{- range (.Values.configmap.logs | trimAll "\n " |  split "\n") }}
+          {{- range (.Values.configmap.log | trimAll "\n " |  split "\n") }}
           class {{ . }}
           {{- end }}
         }
