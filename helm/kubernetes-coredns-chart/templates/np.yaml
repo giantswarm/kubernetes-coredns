@@ -2,7 +2,7 @@ kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
   namespace: {{ .Values.namespace }}
-  name: {{ .Values.name }}-allow-from-all-namespaces
+  name: {{ .Values.name }}-allow
 spec:
   podSelector:
     matchLabels:
@@ -13,17 +13,19 @@ spec:
       protocol: UDP
     - port: {{ .Values.ports.dns.targetPort }}
       protocol: TCP
-    - port: {{ .Values.ports.prometheus }}
-      protocol: TCP
-  - from:
+    from:
     - namespaceSelector: {}
----
+  egress:
+  - {}
+  policyTypes:
+  - Egress
+  - Ingress
 ---
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
   namespace: {{ .Values.namespace }}
-  name: {{ .Values.name }}-deny-access-to-metrics
+  name: {{ .Values.name }}-deny
 spec:
   podSelector:
     matchLabels:
