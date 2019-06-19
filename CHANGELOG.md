@@ -10,7 +10,7 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 ### Added
 
 - Network policy that allows access to coredns dns service from all pods.
-- Network policy that allows accessing metrics on port `10301`.
+- Network policy that allows accessing metrics on port `9153`.
 
 ## [v0.5.1]
 
