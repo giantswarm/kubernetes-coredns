@@ -15,19 +15,11 @@ spec:
       protocol: TCP
     from:
     - namespaceSelector: {}
+  - ports:
+    - port: {{ .Values.ports.prometheus }}
+      protocol: TCP
   egress:
   - {}
   policyTypes:
   - Egress
   - Ingress
----
-kind: NetworkPolicy
-apiVersion: networking.k8s.io/v1
-metadata:
-  namespace: {{ .Values.namespace }}
-  name: {{ .Values.name }}-deny
-spec:
-  podSelector:
-    matchLabels:
-      k8s-app: {{ .Values.name }}
-  ingress: []
