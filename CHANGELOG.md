@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project's packages adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v0.6.0]
+
+### Added
+
+- Network policy that allows access to coredns dns service from all pods.
+- Network policy that allows accessing metrics on port `9153`.
+
 ## [v0.5.1]
 
 ### Added
