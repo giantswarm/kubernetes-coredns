@@ -41,7 +41,7 @@ data:
     }
 
     {{- if .Values.configmap.custom }}
-    {{- range (.Values.configmap.custom | trimAll "\n " |  split "\n") }}
+    {{- range (.Values.configmap.custom | trimAll "\n " |  splitList "\n") }}
     {{ . }}
     {{- end }}
     {{- end }}
