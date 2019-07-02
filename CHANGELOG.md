@@ -12,9 +12,11 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 - Change CoreDNS version to `1.5.1` ([release notes](https://coredns.io/2019/06/26/coredns-1.5.1-release/)). In this version [`any`](https://coredns.io/plugins/any) plugin have been added.
 
+- Fix Forward values to keep the original order.
+
 ## [v0.6.1]
 
-### Added
+### Changed
 
 - Fix Custom values to keep the original order.
 
