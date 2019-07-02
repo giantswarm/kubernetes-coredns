@@ -44,6 +44,17 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 - Switched from port `53` to port `1053` for coredns inside container.
 
+__Warning__: This change means the default port `53` is blocked as it is a priviledge port. In case of using custom block (`coredns-user-values`) you need to update them to specify the port `1053` like in this example
+
+```
+data:
+  custom: |
+    example.com:1053 {
+      forward . 9.9.9.9
+      cache 2000
+    }
+```
+
 ## [v0.4.1]
 
 ### Changed
