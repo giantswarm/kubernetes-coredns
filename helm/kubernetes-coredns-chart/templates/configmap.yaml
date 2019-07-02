@@ -29,7 +29,7 @@ data:
         prometheus :{{ .Values.ports.prometheus }}
 
         {{- if .Values.configmap.forward }}
-        forward . {{ range (.Values.configmap.forward | trimAll "\n " |  split "\n") }}{{ . }}{{ end }} /etc/resolv.conf {
+        forward . {{ range (.Values.configmap.forward | trimAll "\n " |  splitList "\n") }}{{ . }} {{ end }}/etc/resolv.conf {
           policy sequential
         }
         {{- else }}
