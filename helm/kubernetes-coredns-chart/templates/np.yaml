@@ -13,6 +13,10 @@ spec:
       protocol: UDP
     - port: {{ .Values.ports.dns.targetPort }}
       protocol: TCP
+    - port: {{ .Values.ports.dns.port }}
+      protocol: UDP
+    - port: {{ .Values.ports.dns.port }}
+      protocol: TCP
     from:
     - namespaceSelector: {}
   - ports:
