@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project's packages adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v0.6.3]
+
+### Changed
+
+- Change network policy to allow all sources to access ports `53` and `1053`. This change fixes broken `ClusterFirst`  dns policies for pods.
 
 ## [v0.6.2]
 
