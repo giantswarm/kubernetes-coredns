@@ -17,8 +17,6 @@ spec:
       protocol: UDP
     - port: {{ .Values.ports.dns.port }}
       protocol: TCP
-    from:
-    - namespaceSelector: {}
   - ports:
     - port: {{ .Values.ports.prometheus }}
       protocol: TCP
