@@ -24,7 +24,7 @@ spec:
         kubernetes.io/name: "CoreDNS"
     spec:
       serviceAccountName: {{ .Values.name }}
-      priorityClassName: system-cluster-critical
+      priorityClassName: giantswarm-critical
       securityContext:
         runAsUser: {{ .Values.userID }}
         runAsGroup: {{ .Values.groupID }}
