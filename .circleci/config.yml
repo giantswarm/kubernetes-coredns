@@ -13,27 +13,54 @@ e2eTest: &e2eTest
           wget -q $(curl -sS https://api.github.com/repos/giantswarm/e2e-harness/releases/latest | grep browser_download_url | head -n 1 | cut -d '"' -f 4)
           chmod +x ./e2e-harness
 
-    - run: ./e2e-harness localkube
+    - run:
+        name: Get e2ectl binary
+        command: |
+          wget -q $(curl -sS https://api.github.com/repos/giantswarm/e2ectl/releases/latest | grep browser_download_url | head -n 1 | cut -d '"' -f 4)
+          chmod +x ./e2ectl
 
     - run:
-        # Project specific: Only disable kube-dns in this project,
-        # since it cannot run side-by-side with core-dns.
-        name: Disable minikube kube-dns addon
-        command: sudo ./minikube-linux-amd64 addons disable kube-dns
+        name: Get kubectl binary
+        command: |
+          curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+          chmod +x ./kubectl
 
-    - run: ./e2e-harness setup --remote=false
+    - run:
+        name: Init cluster
+        command: |
+          ./e2ectl cluster create
+          cp $(./e2ectl kubeconfig path) ${TEST_DIR}/kubeconfig
+          mkdir .e2e-harness
+          echo "existingCluster: true" >> .e2e-harness/config.yaml
+          echo "remoteCluster: false" >> .e2e-harness/config.yaml
 
     - run:
         name: Publish chart to CNR using a temporary channel for testing
         command: ./architect publish --pipeline=false --channels=${CIRCLE_SHA1}-${TEST_NAME}
 
-    - run: ./e2e-harness test --test-dir=${TEST_DIR}
+    - run:
+        # Project specific: Delete built-in kube-dns + CoreDNS in this project,
+        # since it cannot run side-by-side with one installed by the test.
+        name: Delete built-in core-dns
+        command: |
+          export KUBECONFIG=$(./e2ectl kubeconfig path)
+          ./kubectl delete service kube-dns -n kube-system
+          ./kubectl delete deployment coredns -n kube-system
+          ./kubectl delete configmap coredns -n kube-system
+          ./kubectl delete clusterrolebinding system:coredns
+          ./kubectl delete serviceaccount coredns -n kube-system
+          ./kubectl delete clusterrole system:coredns
+
+    - run:
+        name: Run test
+        command: |
+          E2E_KUBECONFIG=/e2e/kubeconfig ./e2e-harness test --test-dir=${TEST_DIR}
 
     - run:
         name: Finish with cleanup, no matter if the test succeeded or not
         command: |
+          ./e2ectl cluster delete
           ./architect unpublish --channels=${CIRCLE_SHA1}-${TEST_NAME}
-          ./e2e-harness teardown
         when: always
 
 version: 2
