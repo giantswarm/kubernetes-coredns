@@ -34,6 +34,14 @@
   version = "v1.1.0"
 
 [[projects]]
+  digest = "1:d6afaeed1502aa28e80a4ed0981d570ad91b2579193404256ce672ed0a609e0d"
+  name = "github.com/beorn7/perks"
+  packages = ["quantile"]
+  pruneopts = "UT"
+  revision = "37c8de3658fcb183f997c4e13e8337516ab753e6"
+  version = "v1.0.1"
+
+[[projects]]
   digest = "1:166438587ed45ac211dab8a3ecebf4fa0c186d0db63430fb9127bbc2e5fcdc67"
   name = "github.com/cenkalti/backoff"
   packages = ["."]
@@ -115,11 +123,11 @@
     "pkg/harness",
   ]
   pruneopts = "UT"
-  revision = "68471af22cb9ed4b31a091e520cd3411327bf0cf"
+  revision = "094ac65a5e97510adafec48e7bb35944b9e346e8"
 
 [[projects]]
   branch = "master"
-  digest = "1:6cedd1399e6003036b0a9dc3c5fd9da2ff89355f60e321f29a5a068ed2d3a5e8"
+  digest = "1:bf0bb28d84d6acf6b56155897903547bc4bfffdb7a1e4b409cc7c76b47477671"
   name = "github.com/giantswarm/e2esetup"
   packages = [
     "chart",
@@ -127,7 +135,7 @@
     "k8s",
   ]
   pruneopts = "UT"
-  revision = "e195ce6c06e18d3b7655729487475f3b7dae014d"
+  revision = "b8e860764772b300c3cb0785153990d429c479a7"
 
 [[projects]]
   branch = "master"
@@ -150,11 +158,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:b38df1d7c8aa627567fb76146a4855e819114d03162e280bd80999a6c093a2cf"
+  digest = "1:5d33d7e00efe308d118d1170e56643aa0380599c2963b0eeb01a7d0521ec500a"
   name = "github.com/giantswarm/helmclient"
   packages = ["."]
   pruneopts = "UT"
-  revision = "21bfc966a189d131b08ba4014ca4ffaadc3e1809"
+  revision = "2734fbbea648359692b6a6d3e8704026787cb053"
 
 [[projects]]
   branch = "master"
@@ -345,6 +353,14 @@
   revision = "b84e30acd515aadc4b783ad4ff83aff3299bdfe0"
 
 [[projects]]
+  digest = "1:ff5ebae34cfbf047d505ee150de27e60570e8c394b3b8fdbb720ff6ac71985fc"
+  name = "github.com/matttproud/golang_protobuf_extensions"
+  packages = ["pbutil"]
+  pruneopts = "UT"
+  revision = "c12348ce28de40eed0136aa2b644d0ee0650e56c"
+  version = "v1.0.1"
+
+[[projects]]
   digest = "1:33422d238f147d247752996a26574ac48dcf472976eda7f5134015f06bf16563"
   name = "github.com/modern-go/concurrent"
   packages = ["."]
@@ -383,6 +399,48 @@
   pruneopts = "UT"
   revision = "5f041e8faa004a95c88a202771f4cc3e991971e6"
   version = "v2.0.1"
+
+[[projects]]
+  digest = "1:641a6f02ac68db91eee65eed28a23630b215aea79e39b3dbcfa0fdbb19cd11de"
+  name = "github.com/prometheus/client_golang"
+  packages = [
+    "prometheus",
+    "prometheus/internal",
+  ]
+  pruneopts = "UT"
+  revision = "2641b987480bca71fb39738eb8c8b0d577cb1d76"
+  version = "v0.9.4"
+
+[[projects]]
+  branch = "master"
+  digest = "1:2d5cd61daa5565187e1d96bae64dbbc6080dacf741448e9629c64fd93203b0d4"
+  name = "github.com/prometheus/client_model"
+  packages = ["go"]
+  pruneopts = "UT"
+  revision = "fd36f4220a901265f90734c3183c5f0c91daa0b8"
+
+[[projects]]
+  digest = "1:8dcedf2e8f06c7f94e48267dea0bc0be261fa97b377f3ae3e87843a92a549481"
+  name = "github.com/prometheus/common"
+  packages = [
+    "expfmt",
+    "internal/bitbucket.org/ww/goautoneg",
+    "model",
+  ]
+  pruneopts = "UT"
+  revision = "31bed53e4047fd6c510e43a941f90cb31be0972a"
+  version = "v0.6.0"
+
+[[projects]]
+  digest = "1:366f5aa02ff6c1e2eccce9ca03a22a6d983da89eecff8a89965401764534eb7c"
+  name = "github.com/prometheus/procfs"
+  packages = [
+    ".",
+    "internal/fs",
+  ]
+  pruneopts = "UT"
+  revision = "3f98efb27840a48a7a2898ec80be07674d19f9c8"
+  version = "v0.0.3"
 
 [[projects]]
   digest = "1:d707dbc1330c0ed177d4642d6ae102d5e2c847ebd0eb84562d0dc4f024531cfc"
