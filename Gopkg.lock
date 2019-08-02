@@ -116,12 +116,9 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:02aff24d1a627041d3de693b3764a593d23d28fc9597bc651b1caec5efb292e3"
+  digest = "1:170228f09ab6ac5d1fd5b60b0b5409fb1a500d50facf591b33a8ae33467876aa"
   name = "github.com/giantswarm/e2e-harness"
-  packages = [
-    "pkg/framework/deployment",
-    "pkg/harness",
-  ]
+  packages = ["pkg/framework/deployment"]
   pruneopts = "UT"
   revision = "094ac65a5e97510adafec48e7bb35944b9e346e8"
 
@@ -854,7 +851,6 @@
     "github.com/docker/distribution/reference",
     "github.com/giantswarm/apprclient",
     "github.com/giantswarm/e2e-harness/pkg/framework/deployment",
-    "github.com/giantswarm/e2e-harness/pkg/harness",
     "github.com/giantswarm/e2esetup/chart",
     "github.com/giantswarm/e2esetup/chart/env",
     "github.com/giantswarm/e2esetup/k8s",

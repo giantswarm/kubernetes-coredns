@@ -10,7 +10,6 @@ import (
 
 	"github.com/giantswarm/apprclient"
 	"github.com/giantswarm/e2e-harness/pkg/framework/deployment"
-	"github.com/giantswarm/e2e-harness/pkg/harness"
 	e2esetup "github.com/giantswarm/e2esetup/chart"
 	"github.com/giantswarm/e2esetup/chart/env"
 	"github.com/giantswarm/e2esetup/k8s"
@@ -69,7 +68,7 @@ func init() {
 		c := k8s.ClientsConfig{
 			Logger: l,
 
-			KubeConfigPath: harness.DefaultKubeConfig,
+			KubeConfigPath: env.KubeConfigPath(),
 		}
 		k8sClients, err = k8s.NewClients(c)
 		if err != nil {
