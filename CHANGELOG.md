@@ -18,7 +18,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ### Changed
 
-- Align autopath configuration according to upstream documentation, so from now on the pods parameter will be `verified`. 
+- Align autopath configuration according to upstream documentation, so from now on the pods parameter will be `verified`.
+- Specify `-dns.port` arg explicitly with `1053` value.
 
 ## [v0.6.3]
 
