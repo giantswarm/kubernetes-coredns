@@ -14,7 +14,7 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
   - [1.6.1 release notes](https://coredns.io/2019/08/02/coredns-1.6.1-release/).
   - [1.6.2 release notes](https://coredns.io/2019/08/13/coredns-1.6.2-release/).
 
-- The deployment has included the Prometheus Operator annotations to make easier the target discovery by Prometheus.
+- The deployment has included the Prometheus Operator annotations to make the target discovery easier by Prometheus.
 
 ### Changed
 
