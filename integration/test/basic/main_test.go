@@ -9,13 +9,12 @@ import (
 	"testing"
 
 	"github.com/giantswarm/apprclient"
-	"github.com/giantswarm/e2e-harness/pkg/framework/deployment"
-	"github.com/giantswarm/e2e-harness/pkg/harness"
 	e2esetup "github.com/giantswarm/e2esetup/chart"
 	"github.com/giantswarm/e2esetup/chart/env"
 	"github.com/giantswarm/e2esetup/k8s"
 	"github.com/giantswarm/e2etests/managedservices"
 	"github.com/giantswarm/helmclient"
+	"github.com/giantswarm/k8sclient"
 	"github.com/giantswarm/micrologger"
 	"github.com/spf13/afero"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -32,7 +31,6 @@ const (
 
 var (
 	a          *apprclient.Client
-	d          *deployment.Deployment
 	helmClient *helmclient.Client
 	k8sSetup   *k8s.Setup
 	l          micrologger.Logger
@@ -64,14 +62,14 @@ func init() {
 		}
 	}
 
-	var k8sClients *k8s.Clients
+	var k8sClients *k8sclient.Clients
 	{
-		c := k8s.ClientsConfig{
+		c := k8sclient.ClientsConfig{
 			Logger: l,
 
-			KubeConfigPath: harness.DefaultKubeConfig,
+			KubeConfigPath: env.KubeConfigPath(),
 		}
-		k8sClients, err = k8s.NewClients(c)
+		k8sClients, err = k8sclient.NewClients(c)
 		if err != nil {
 			panic(err.Error())
 		}
@@ -84,17 +82,6 @@ func init() {
 			Clients: k8sClients,
 		}
 		k8sSetup, err = k8s.NewSetup(c)
-		if err != nil {
-			panic(err.Error())
-		}
-	}
-
-	{
-		c := deployment.Config{
-			K8sClient: k8sClients.K8sClient(),
-			Logger:    l,
-		}
-		d, err = deployment.New(c)
 		if err != nil {
 			panic(err.Error())
 		}

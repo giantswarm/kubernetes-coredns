@@ -14,7 +14,7 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
   - [1.6.1 release notes](https://coredns.io/2019/08/02/coredns-1.6.1-release/).
   - [1.6.2 release notes](https://coredns.io/2019/08/13/coredns-1.6.2-release/).
 
-- The deployment has included the Prometheus Operator annotations to make easier the target discovery by Prometheus.
+- The deployment has included the Prometheus Operator annotations to make the target discovery easier by Prometheus.
 
 ### Changed
 
@@ -96,6 +96,7 @@ data:
 
 - Remove `proxy` configuration support as it is [deprecated by upstream](https://coredns.io/2019/03/03/coredns-1.4.0-release/). New server block with `forward` plugin has to be used, more info in our [docs](https://docs.giantswarm.io/guides/advanced-coredns-configuration/).
 
+[0.7.0]: https://github.com/giantswarm/kubernetes-coredns/pull/46
 [0.6.2]: https://github.com/giantswarm/kubernetes-coredns/pull/36
 [0.6.1]: https://github.com/giantswarm/kubernetes-coredns/pull/32
 [0.5.1]: https://github.com/giantswarm/kubernetes-coredns/pull/32
