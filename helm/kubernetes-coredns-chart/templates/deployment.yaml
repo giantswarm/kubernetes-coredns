@@ -18,6 +18,8 @@ spec:
     metadata:
       annotations:
         cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "{{ .Values.ports.prometheus }}"
       labels:
         giantswarm.io/service-type: "{{ .Values.serviceType }}"
         k8s-app: {{ .Values.name }}
