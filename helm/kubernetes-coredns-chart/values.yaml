@@ -22,7 +22,7 @@ configmap:
 image:
   registry: quay.io
   repository: giantswarm/coredns
-  tag: 1.5.1
+  tag: 1.6.2
 
 updateStrategy:
   type: RollingUpdate
