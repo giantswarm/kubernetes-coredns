@@ -46,7 +46,7 @@ spec:
       - name: coredns
         image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: IfNotPresent
-        args: [ "-conf", "/etc/coredns/Corefile" ]
+        args: [ "-conf", "/etc/coredns/Corefile", "-dns.port", "1053" ]
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
