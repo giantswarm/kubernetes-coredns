@@ -45,3 +45,27 @@ data:
     {{ . }}
     {{- end }}
     {{- end }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: node-local-dns
+  namespace: kube-system
+  labels:
+    addonmanager.kubernetes.io/mode: Reconcile
+data:
+  Corefile: |
+    .:{{ .Values.ports.dns.targetPort }} {
+        cache {
+          success 9984 30
+          denial 9984 5
+        }
+        errors
+        reload
+        loop
+        forward . {{ .Values.cluster.kubernetes.DNS.IP }} {
+                force_tcp
+        }
+        prometheus :{{ .Values.ports.prometheus }}
+        health
+    }
