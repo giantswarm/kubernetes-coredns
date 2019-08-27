@@ -21,6 +21,7 @@ spec:
     spec:
       priorityClassName: system-node-critical
       serviceAccountName: {{ .Values.name }}
+      hostNetwork: true
       dnsPolicy: Default  # Don't use cluster DNS.
       tolerations:
       - key: "CriticalAddonsOnly"
