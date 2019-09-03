@@ -100,7 +100,7 @@ rules:
   resources:
   - podsecuritypolicies
   resourceNames:
-  - {{ .Values.name }}-localdns
+  - {{ .Values.name }}-local-dns
   verbs:
   - use
 ---
