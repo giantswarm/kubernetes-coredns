@@ -13,21 +13,21 @@ spec:
       maxUnavailable: 10%
   selector:
     matchLabels:
-      k8s-app: node-local-dns
+      k8s-app: {{ .Values.name }}-local-dns
   template:
     metadata:
        labels:
-          k8s-app: node-local-dns
+          k8s-app: {{ .Values.name }}-local-dns
     spec:
       priorityClassName: system-node-critical
-      serviceAccountName: {{ .Values.name }}
+      serviceAccountName: {{ .Values.name }}-local-dns
       hostNetwork: true
       dnsPolicy: Default  # Don't use cluster DNS.
       tolerations:
       - key: "CriticalAddonsOnly"
         operator: "Exists"
       containers:
-      - name: node-dns-cache
+      - name: {{ .Values.name }}-local-dns
         image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         resources:
           limits:
@@ -71,7 +71,7 @@ spec:
           type: FileOrCreate
       - name: config-volume
         configMap:
-          name: node-local-dns
+          name: {{ .Values.name }}-local-dns
           items:
             - key: Corefile
               path: Corefile
