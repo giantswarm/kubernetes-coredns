@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: node-local-dns
+  name: {{ .Values.name }}-local-dns
   namespace: kube-system
   labels:
-    k8s-app: node-local-dns
+    k8s-app: {{ .Values.name }}-local-dns
     kubernetes.io/cluster-service: "true"
     addonmanager.kubernetes.io/mode: Reconcile
 spec:
