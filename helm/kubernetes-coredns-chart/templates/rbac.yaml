@@ -49,6 +49,7 @@ subjects:
 - kind: ServiceAccount
   name: {{ .Values.name }}
   namespace: {{ .Values.namespace }}
+
 # PSP rbac
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -82,4 +83,39 @@ subjects:
 roleRef:
   kind: ClusterRole
   name: {{ .Values.name }}-psp-user
+  apiGroup: rbac.authorization.k8s.io
+
+# PSP local dns rbac
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ .Values.name }}-local-dns
+  labels:
+    app: {{ .Values.name }}
+    giantswarm.io/service-type: "managed"
+rules:
+- apiGroups:
+  - extensions
+  resources:
+  - podsecuritypolicies
+  resourceNames:
+  - {{ .Values.name }}-localdns
+  verbs:
+  - use
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ .Values.name }}-local-dns
+  labels:
+    app: {{ .Values.name }}-local-dns
+    giantswarm.io/service-type: "managed"
+subjects:
+- kind: ServiceAccount
+  name: {{ .Values.name }}
+  namespace: {{ .Values.namespace }}
+roleRef:
+  kind: ClusterRole
+  name: {{ .Values.name }}-local-dns
   apiGroup: rbac.authorization.k8s.io

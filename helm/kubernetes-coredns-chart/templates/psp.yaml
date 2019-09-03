@@ -37,6 +37,32 @@ spec:
       - min: 1
         max: 65535
   readOnlyRootFilesystem: false
+---
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: {{ .Values.name }}-psp-user-local-dns
+  labels:
+    k8s-app: node-local-dns
+    giantswarm.io/service-type: "{{ .Values.serviceType }}"
+spec:
+  privileged: true
+  hostNetwork: true
+  hostIPC: true
+  hostPID: true
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: RunAsAny
+  runAsUser:
+    rule: RunAsAny
+  fsGroup:
+    rule: RunAsAny
+  hostPorts:
+  - min: 0
+    max: 65535
+  volumes:
+  - '*'
   allowedHostPaths:
-    - pathPrefix: "/run/xtables.lock"
-      readOnly: false
+  - pathPrefix: "/run/xtables.lock"
+    readOnly: false

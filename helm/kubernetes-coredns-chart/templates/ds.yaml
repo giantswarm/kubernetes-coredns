@@ -46,10 +46,10 @@ spec:
           readOnlyRootFilesystem: true
         ports:
         - containerPort: {{ .Values.ports.dns.targetPort }}
-          name: {{ .Values.ports.dns.name }}
+          name: {{ .Values.ports.dns.name }}-local-udp
           protocol: UDP
         - containerPort: {{ .Values.ports.dns.targetPort }}
-          name: {{ .Values.ports.dns.name }}-tcp
+          name: {{ .Values.ports.dns.name }}-local-tcp
           protocol: TCP
         livenessProbe:
           httpGet:
