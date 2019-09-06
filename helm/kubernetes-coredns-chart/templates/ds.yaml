@@ -35,7 +35,12 @@ spec:
           requests:
             cpu: 25m
             memory: 5Mi
-        args: [ "-localip", "localhost", "-conf", "/etc/coredns/Corefile","-dns.port", "1053"  ]
+        args: [ "-localip", "$LOCAL_DNS_IP", "-conf", "/etc/coredns/Corefile","-dns.port", "1053"  ]
+        env:        
+        - name: LOCAL_DNS_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
