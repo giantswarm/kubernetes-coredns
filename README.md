@@ -1,6 +1,9 @@
 [![CircleCI](https://circleci.com/gh/giantswarm/kubernetes-coredns/tree/master.svg?style=svg)](https://circleci.com/gh/giantswarm/kubernetes-coredns/tree/master)
 
 # kubernetes-coredns
+
+**DEPRECATED** Changes should be made to https://github.com/giantswarm/coredns-app.
+
 Helm Chart for CoreDNS in Guest Clusters.
 
 * Installs the the DNS server [CoreDNS](https://github.com/coredns/coredns).
