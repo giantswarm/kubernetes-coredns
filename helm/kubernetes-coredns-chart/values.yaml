@@ -13,6 +13,7 @@ minReplicas: 2
 maxReplicas: 10
 
 configmap:
+  autopath: "@kubernetes"
   cache: 30
   custom: ""
   log: |
