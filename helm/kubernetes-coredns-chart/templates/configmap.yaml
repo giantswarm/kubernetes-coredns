@@ -37,7 +37,9 @@ data:
         {{- end }}
 
         reload
-        autopath @kubernetes
+        {{- if .Values.configmap.autopath }}
+        autopath {{ .Values.configmap.autopath }}
+        {{- end }}
     }
 
     {{- if .Values.configmap.custom }}
